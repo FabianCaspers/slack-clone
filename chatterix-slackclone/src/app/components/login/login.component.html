@@ -10,9 +10,9 @@
             <input type="password" matInput FormControlName="password">
         </mat-form-field>
         <div class="aligned-to-right">
-            <button mat-button color="primary">Recover password</button>
+            <button mat-button color="primary" [disabled]="!form.get('email')!.valid">Recover password</button>
         </div>
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Log in</button>
+        <button mat-raised-button color="primary">Log in</button>
         <button mat-raised-button color="basic">Register</button>
     </form>
 </main>
