@@ -1,0 +1,18 @@
+<main>
+    <form [formGroup]="form" class="example-form">
+        <h1>Enter your Account</h1>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput FormControlName="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput FormControlName="password">
+        </mat-form-field>
+        <div class="aligned-to-right">
+            <button mat-button color="primary">Recover password</button>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Log in</button>
+        <button mat-raised-button color="basic">Register</button>
+    </form>
+</main>
