@@ -8,18 +8,19 @@
     .welcome-text {
         display: flex;
         flex-direction: column;
-        align-items: center;
 
         h1 {
             font-weight: 700;
             font-size: 3.5rem;
             text-transform: uppercase;
+            margin: 0;
         }
 
         p {
             font-size: 1.5rem;
             color: darkgray;
             margin-top: 3rem;
+            margin-bottom: 3rem;
         }
 
         button {
