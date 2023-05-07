@@ -20,6 +20,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './components/home/home.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +58,13 @@ import { HomeComponent } from './components/home/home.component';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

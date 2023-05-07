@@ -1,1 +1,16 @@
-<p>home works!</p>
+<mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="drawer-sidenav" mode="side">
+        <div class="sidenav-header">
+            <p>What's up, Hans ?</p>
+        </div>
+
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div>
+  
+  </mat-drawer-container>
+  
