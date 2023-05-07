@@ -24,7 +24,7 @@
         <button mat-button [matMenuTriggerFor]="profile">Profile</button>
         <mat-menu #profile="matMenu">
           <button class="changeStatus" mat-menu-item [matMenuTriggerFor]="profiles">Activity status</button>
-          <button class="changeStatus" mat-menu-item>Logout</button>
+          <button class="changeStatus" mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
         <mat-menu #profiles="matMenu">
           <button class="changeStatus" mat-menu-item>Online</button>
