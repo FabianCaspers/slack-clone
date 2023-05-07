@@ -9,7 +9,8 @@
         <button type="button" (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
           <mat-icon>menu</mat-icon>
         </button>
-        <span class="example-spacer"></span>
+        <span class="example-spacer">Chatterix</span>
+
         <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>Status</button>
         <mat-menu #menu="matMenu">
             <div class="status-container">
@@ -21,7 +22,8 @@
           <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('On vacation 🌴', homeOfficeButton)">🌴 On vacation</button>
           <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('Home Office 🧑🏽‍💻', homeOfficeButton)">🧑🏽‍💻 Home Office</button>
         </mat-menu>
-        <button mat-button [matMenuTriggerFor]="profile">Profile</button>
+        
+        <button class="profile-container" mat-button [matMenuTriggerFor]="profile">HS</button>
         <mat-menu #profile="matMenu">
           <button class="changeStatus" mat-menu-item [matMenuTriggerFor]="profiles">Activity status</button>
           <button class="changeStatus" mat-menu-item (click)="logout()">Logout</button>
@@ -32,5 +34,6 @@
           <button class="changeStatus" mat-menu-item>Do not disturbed</button>
           <button class="changeStatus" mat-menu-item>Offline</button>
         </mat-menu>
+        
     </mat-toolbar>
 </mat-drawer-container>

@@ -22,6 +22,7 @@
         cursor: pointer;
         height: 36px;
         padding: 0 8px 0 8px;
+        margin-right: 24px;
         &:hover {
             background-color: #2f41a5;
             border-radius: 12px;
@@ -56,4 +57,18 @@
     display: flex;
     justify-content: center;
     font-weight: bold;
+}
+
+.profile-container {
+    min-width: 45px !important;
+    width: 45px;
+    height: 45px;
+    background-color: orange;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
 }
