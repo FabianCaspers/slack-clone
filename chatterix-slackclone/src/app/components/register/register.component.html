@@ -7,7 +7,9 @@
 
             <form [formGroup]="registerForm" class="example-form" (ngSubmit)="register()">
                 <h1>Register</h1>
-                <span class="introduction">Join the conversation by completing the registration form!</span>
+                <span class="introduction">
+                    Join the conversation by completing the registration form!
+                </span>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Full Name</mat-label>
@@ -36,13 +38,16 @@
                     <mat-error *ngIf="registerForm.get('password')!.hasError('required')">
                         Password is required
                     </mat-error>
-                    <button type="button" mat-icon-button class="input-icon move-right" (click)="pwVisible = !pwVisible">
+                    <button type="button" mat-icon-button class="input-icon move-right"
+                        (click)="pwVisible = !pwVisible">
                         <mat-icon>{{pwVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
                 </mat-form-field>
 
                 <button type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid"
-                    *ngIf="!isRegistering">Register</button>
+                    *ngIf="!isRegistering">
+                    Register
+                </button>
                 <button mat-raised-button color="primary" *ngIf="isRegistering">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </button>

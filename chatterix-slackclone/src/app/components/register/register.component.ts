@@ -12,8 +12,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterComponent {
 
   registerForm!: FormGroup;
-  isRegistering = false;
-  pwVisible = false;
+  isRegistering: boolean = false;
+  pwVisible: boolean = false;
+  message: string = '';
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -35,20 +36,26 @@ export class RegisterComponent {
       password: this.registerForm.value.password
     }).subscribe(() => {
       this.isRegistering = false;
-      this.snackbar.open("You have registered succesfully. You will be directed to the login page.", "OK", {
-        duration: 3000
-      })
-      setTimeout(() => {
-        this.router.navigate(['login']);
-        this.registerForm.reset();
-      }, 3000);
+      this.message = 'You have registered succesfully. You will be directed to the login page.';
+      this.showMessage(this.message);
+      this.navigateToLogin();
     }, (error: any) => {
       this.isRegistering = false;
-      this.snackbar.open("We are sorry, but the registration failed. Please check your details!", "OK", {
-        duration: 5000
-      })
+      this.message = 'We are sorry, but the registration failed. Please check your details!'
+      this.showMessage(this.message);
     })
   }
 
+  navigateToLogin() {
+    setTimeout(() => {
+      this.router.navigate(['login']);
+      this.registerForm.reset();
+    }, 3000);
+  }
 
+  showMessage(message: string) {
+    this.snackbar.open(message, "OK", {
+      duration: 4000
+    })
+  }
 }

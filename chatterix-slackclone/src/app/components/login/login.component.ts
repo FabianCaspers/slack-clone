@@ -12,10 +12,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent {
 
   form!: FormGroup;
-  isLoggingIn = false;
-  isLoggingInGuest = false;
-  isRecoveringPassword = false;
-  pwVisible = false;
+  isLoggingIn: boolean = false;
+  isLoggingInGuest: boolean = false;
+  isRecoveringPassword: boolean = false;
+  pwVisible: boolean = false;
+  message: string = '';
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -35,13 +36,11 @@ export class LoginComponent {
       email: this.form.value.email,
       password: this.form.value.password
     }).subscribe(() => {
-      this.router.navigate(['home']);
-      this.form.reset();
+      this.navigateToHome();
     }, (error: any) => {
       this.isLoggingIn = false;
-      this.snackbar.open("Login failed! Check your details!", "OK", {
-        duration: 5000
-      })
+      this.message = 'Login failed! Check your details!'
+      this.showMessage(this.message);
     })
   }
 
@@ -52,13 +51,11 @@ export class LoginComponent {
       email: 'guest@mail.de',
       password: 'guestuser123'
     }).subscribe(() => {
-      this.router.navigate(['home']);
-      this.form.reset();
+      this.navigateToHome();
     }, (error: any) => {
       this.isLoggingInGuest = false;
-      this.snackbar.open("Guest login failed. Please try again later!", "OK", {
-        duration: 5000
-      })
+      this.message = 'Guest login failed. Please try again later!'
+      this.showMessage(this.message);
     })
   }
  
@@ -68,14 +65,24 @@ export class LoginComponent {
     this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
       this.isRecoveringPassword = false;
       this.form.reset();
-      this.snackbar.open("An email for recovering your password has been sent!", "OK", {
-        duration: 5000
-      }), (error: any) => {
+      this.message = 'An email to recover your password has been sent!'
+      this.showMessage(this.message), (error: any) => {
         this.isRecoveringPassword = false;
         this.snackbar.open(error.message, "OK", {
           duration: 5000
         })
       }
+    })
+  }
+
+  navigateToHome() {
+    this.router.navigate(['home']);
+    this.form.reset();
+  }
+
+  showMessage(message: string) {
+    this.snackbar.open(message, "OK", {
+      duration: 5000
     })
   }
 }

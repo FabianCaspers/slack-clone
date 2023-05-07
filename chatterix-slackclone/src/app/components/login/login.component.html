@@ -4,8 +4,10 @@
 
             <form [formGroup]="form" class="example-form" (ngSubmit)="login()">
                 <h1>Login to your Account</h1>
-                <span class="introduction">Login to your existing account or register by clicking on the button down
-                    below!</span>
+                <span class="introduction">
+                    Login to your existing account or register by clicking on the button down
+                    below!
+                </span>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
@@ -21,11 +23,12 @@
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input [type]="pwVisible ? 'text' : 'password'"  matInput formControlName="password">
+                    <input [type]="pwVisible ? 'text' : 'password'" matInput formControlName="password">
                     <mat-error *ngIf="form.get('password')!.hasError('required')">
                         Please enter your password!
                     </mat-error>
-                    <button type="button" mat-icon-button class="input-icon move-right" (click)="pwVisible = !pwVisible">
+                    <button type="button" mat-icon-button class="input-icon move-right"
+                        (click)="pwVisible = !pwVisible">
                         <mat-icon>{{pwVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
                     </button>
                 </mat-form-field>
@@ -41,12 +44,16 @@
                 </div>
 
                 <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="login()"
-                    *ngIf="!isLoggingIn">Login</button>
+                    *ngIf="!isLoggingIn">
+                    Login
+                </button>
                 <button mat-raised-button color="primary" *ngIf="isLoggingIn">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </button>
 
-                <button type="button" mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
+                <button type="button" mat-raised-button color="accent" [routerLink]="['/register']">
+                    Register
+                </button>
             </form>
 
             <div class="continue-container">
@@ -56,7 +63,10 @@
             </div>
 
             <div class="guest-login-container">
-                <button *ngIf="!isLoggingInGuest" (click)="loginAsGuest()" class="guest-btn" mat-raised-button color="primary">Guest Login</button>
+                <button *ngIf="!isLoggingInGuest" (click)="loginAsGuest()" class="guest-btn" mat-raised-button
+                    color="primary">
+                    Guest Login
+                </button>
                 <button mat-raised-button color="primary" *ngIf="isLoggingInGuest">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </button>
