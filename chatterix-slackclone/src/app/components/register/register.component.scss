@@ -1,0 +1,42 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #3f51b5;
+}
+
+mat-card {
+    padding: 0 32px 32px 32px;
+}
+
+form {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        width: 100%;
+        text-align: left;
+    }
+
+    button, mat-form-field {
+        width: -webkit-fill-available;
+    }
+
+    button {
+        margin: 5px 0;
+
+        &[mat-button] {
+            width: auto;
+        }
+    }
+
+    .aligned-to-right {
+        text-align: right;
+        width: 100%;
+    }
+}

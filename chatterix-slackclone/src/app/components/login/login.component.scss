@@ -18,6 +18,11 @@ form {
     align-items: center;
     flex-direction: column;
 
+    h1 {
+        width: 100%;
+        text-align: left;
+    }
+
     button, mat-form-field {
         width: -webkit-fill-available;
     }

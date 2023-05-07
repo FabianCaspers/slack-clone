@@ -28,7 +28,7 @@
                 <button mat-raised-button color="primary" *ngIf="isLoggingIn">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </button>
-                <button mat-raised-button color="basic">Register</button>
+                <button mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
             </form>
         </mat-card-content>
     </mat-card>

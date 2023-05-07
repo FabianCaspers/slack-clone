@@ -1,15 +1,44 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-        <mat-label>Your Name</mat-label>
-        <input matInput value="">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput value="">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input matInput value="">
-    </mat-form-field>
-    <button mat-button color="primary">Sign in</button>
-</form>
+<main>
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form" class="example-form">
+                <h1>Register</h1>
+                <mat-form-field class="example-full-width">
+                    <mat-label>User name</mat-label>
+                    <input type="name" matInput FormControlName="name">
+                    <mat-error *ngIf="form.get('name')!.hasError('required')">
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput FormControlName="email">
+                    <mat-error *ngIf="form.get('email')!.hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="form.get('email')!.hasError('email')">
+                        Email is invalid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput FormControlName="password">
+                    <mat-error *ngIf="form.get('password')!.hasError('required')">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Repeat password</mat-label>
+                    <input type="password" matInput FormControlName="passwordRepeat">
+                    <mat-error *ngIf="form.get('passwordRepeat')!.hasError('required')">
+                        Repeat your password
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary">Register</button>
+                <button mat-raised-button color="primary" *ngIf="isRegistering">
+                    <mat-spinner color="accent" diameter="20"></mat-spinner>
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</main>
