@@ -34,6 +34,7 @@ export class LoginComponent {
       password: this.form.value.password
     }).subscribe(() => {
       this.router.navigate(['home']);
+      this.form.reset();
     }, (error: any) => {
       this.isLoggingIn = false;
       this.snackbar.open(error.message, "OK", {
@@ -47,6 +48,7 @@ export class LoginComponent {
 
     this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
       this.isRecoveringPassword = false;
+      this.form.reset();
       this.snackbar.open("Email for recovering your password has been sent!", "OK", {
         duration: 5000
       }), (error: any) => {

@@ -35,6 +35,7 @@ export class RegisterComponent {
       password: this.registerForm.value.password
     }).subscribe(() => {
       this.router.navigate(['login']);
+      this.registerForm.reset();
     }, (error: any) => {
       this.isRegistering = false;
       this.snackbar.open(error.message, "OK", {
