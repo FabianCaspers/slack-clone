@@ -13,6 +13,7 @@ export class LoginComponent {
 
   form!: FormGroup;
   isLoggingIn = false;
+  isLoggingInGuest = false;
   isRecoveringPassword = false;
   pwVisible = false;
 
@@ -39,6 +40,23 @@ export class LoginComponent {
     }, (error: any) => {
       this.isLoggingIn = false;
       this.snackbar.open("Login failed! Check your details!", "OK", {
+        duration: 5000
+      })
+    })
+  }
+
+  loginAsGuest() {
+    this.isLoggingInGuest = true;
+
+    this.authenticationService.signIn({
+      email: 'guest@mail.de',
+      password: 'guestuser123'
+    }).subscribe(() => {
+      this.router.navigate(['home']);
+      this.form.reset();
+    }, (error: any) => {
+      this.isLoggingInGuest = false;
+      this.snackbar.open("Guest login failed. Please try again later!", "OK", {
         duration: 5000
       })
     })

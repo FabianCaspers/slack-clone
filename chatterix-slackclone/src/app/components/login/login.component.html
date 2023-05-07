@@ -48,6 +48,19 @@
 
                 <button type="button" mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
             </form>
+
+            <div class="continue-container">
+                <hr>
+                <p>Or continue as guest</p>
+                <hr>
+            </div>
+
+            <div class="guest-login-container">
+                <button *ngIf="!isLoggingInGuest" (click)="loginAsGuest()" class="guest-btn" mat-raised-button color="primary">Guest Login</button>
+                <button mat-raised-button color="primary" *ngIf="isLoggingInGuest">
+                    <mat-spinner color="accent" diameter="20"></mat-spinner>
+                </button>
+            </div>
         </mat-card-content>
     </mat-card>
 </main>

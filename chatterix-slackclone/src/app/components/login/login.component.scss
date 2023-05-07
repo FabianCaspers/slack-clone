@@ -62,3 +62,26 @@ form {
 .move-right {
     margin-right: -12px !important;
 }
+
+.continue-container {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    margin: 32px 0;
+    color: #5e5e5e;
+
+    hr {
+        width: 80px;
+        height: 1px;
+        background-color: #5e5e5e;
+    }
+}
+
+.guest-login-container {
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 150px;
+    }
+}
