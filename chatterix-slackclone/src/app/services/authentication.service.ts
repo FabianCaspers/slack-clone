@@ -16,8 +16,11 @@ export class AuthenticationService {
       params.email, params.password
     ));
   }
-}
 
+  recoverPassword(email: string): Observable<void> {
+    return from(this.auth.sendPasswordResetEmail(email))  //from transforms a promise to an observable
+  }
+}
 
 type SignIn = {
   email: string;

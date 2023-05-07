@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -13,10 +13,10 @@ export class LoginComponent {
 
   form!: FormGroup;
   isLoggingIn = false;
+  isRecoveringPassword = false;
 
   constructor(
     private authenticationService: AuthenticationService,
-    private formBuilder: FormBuilder,
     private router: Router,
     private snackbar: MatSnackBar
   ) {
@@ -39,6 +39,22 @@ export class LoginComponent {
       this.snackbar.open(error.message, "OK", {
         duration: 5000
       })
+    })
+  }
+
+  recoverPassword() {
+    this.isRecoveringPassword = true;
+
+    this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
+      this.isRecoveringPassword = false;
+      this.snackbar.open("Email for recovering your password has been sent!", "OK", {
+        duration: 5000
+      }), (error: any) => {
+        this.isRecoveringPassword = false;
+        this.snackbar.open(error.message, "OK", {
+          duration: 5000
+        })
+      }
     })
   }
 }
