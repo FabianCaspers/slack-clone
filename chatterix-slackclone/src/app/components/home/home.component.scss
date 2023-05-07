@@ -14,6 +14,19 @@
         align-items: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     }
+
+    .mat-button {
+        background-color: transparent;
+        border: none;
+        color: white;
+        cursor: pointer;
+        height: 36px;
+        padding: 0 8px 0 8px;
+        &:hover {
+            background-color: #2f41a5;
+            border-radius: 12px;
+        }
+    }
 }
 
 .example-sidenav-content {
@@ -23,8 +36,24 @@
     justify-content: center;
 }
 
-
 .example-spacer {
     flex: 1 1 auto;
-  }
-  
+}
+
+.changeStatus {
+    background-color: transparent;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    &:hover {
+        background-color: lightgray;
+    }
+
+    
+}
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

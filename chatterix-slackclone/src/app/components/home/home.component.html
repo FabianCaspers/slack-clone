@@ -1,42 +1,36 @@
-
-
-
 <mat-drawer-container class="drawer-container" autosize>
     <mat-drawer #drawer class="drawer-sidenav" [opened]="true" mode="side">
         <div class="sidenav-header">
             <p>What's up, Hans ?</p>
         </div>
-
     </mat-drawer>
-  
+
     <mat-toolbar color="primary">
         <button type="button" (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
-        <button mat-button [matMenuTriggerFor]="menu">Home Office</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>In a meeting</button>
-  <button mat-menu-item>Sick</button>
-  <button mat-menu-item>On vacation</button>
-  <button mat-menu-item>Home Office</button>
-  
-</mat-menu>
-<button mat-button [matMenuTriggerFor]="profile">Profile</button>
-<mat-menu #profile="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="profiles">Change activity status</button>
-  <button mat-menu-item>Logout</button>
-</mat-menu>
-
-<mat-menu #profiles="matMenu">
-  <button mat-menu-item>Online</button>
-  <button mat-menu-item>Away</button>
-  <button mat-menu-item>Do not disturbed</button>
-  <button mat-menu-item>Offline</button>
-
-</mat-menu>
-      </mat-toolbar>
-  </mat-drawer-container>
-
-
-  
+        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>Status</button>
+        <mat-menu #menu="matMenu">
+            <div class="status-container">
+                <p>Select a status:</p>
+            </div>
+          <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('In a meeting 🗓️', homeOfficeButton)">🗓️ In a meeting</button>
+          <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('Sick 🤒', homeOfficeButton)">🤒 Sick</button>
+          <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('On the go 🚗', homeOfficeButton)">🚗 On the go</button>
+          <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('On vacation 🌴', homeOfficeButton)">🌴 On vacation</button>
+          <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('Home Office 🧑🏽‍💻', homeOfficeButton)">🧑🏽‍💻 Home Office</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="profile">Profile</button>
+        <mat-menu #profile="matMenu">
+          <button class="changeStatus" mat-menu-item [matMenuTriggerFor]="profiles">Activity status</button>
+          <button class="changeStatus" mat-menu-item>Logout</button>
+        </mat-menu>
+        <mat-menu #profiles="matMenu">
+          <button class="changeStatus" mat-menu-item>Online</button>
+          <button class="changeStatus" mat-menu-item>Away</button>
+          <button class="changeStatus" mat-menu-item>Do not disturbed</button>
+          <button class="changeStatus" mat-menu-item>Offline</button>
+        </mat-menu>
+    </mat-toolbar>
+</mat-drawer-container>
