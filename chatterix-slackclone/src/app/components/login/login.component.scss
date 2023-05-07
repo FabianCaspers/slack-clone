@@ -7,6 +7,11 @@ main {
     background-color: #3f51b5;
 }
 
+.introduction {
+    margin-bottom: 32px;
+    color: #5e5e5e;
+}
+
 mat-card {
     padding: 0 32px 32px 32px;
 }
@@ -16,7 +21,7 @@ mat-form-field {
 }
 
 form {
-    width: 300px;
+    width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;

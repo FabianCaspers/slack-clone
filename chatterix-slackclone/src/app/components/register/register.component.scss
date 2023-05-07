@@ -7,16 +7,27 @@ main {
     background-color: #3f51b5;
 }
 
+.back-to-login-button {
+    position: absolute;
+    top: 16px;
+    left: 32px;
+}
+
 mat-card {
-    padding: 0 32px 32px 32px;
+    padding: 32px;
 }
 
 mat-form-field {
     padding-bottom: 10px;
 }
 
+.introduction {
+    margin-bottom: 32px;
+    color: #5e5e5e;
+}
+
 form {
-    width: 300px;
+    width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
