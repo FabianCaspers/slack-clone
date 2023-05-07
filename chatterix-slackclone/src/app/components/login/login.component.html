@@ -1,8 +1,10 @@
 <main>
     <mat-card>
         <mat-card-content>
+
             <form [formGroup]="form" class="example-form" (ngSubmit)="login()">
                 <h1>Enter your Account</h1>
+
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required>
@@ -10,16 +12,18 @@
                         Email is required
                     </mat-error>
                     <mat-error *ngIf="form.get('email')!.hasError('email')">
-                        Email is invalid
-                    </mat-error>
+                        Email is not a vaild email
+                    </mat-error> 
                 </mat-form-field>
+
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName="password">
+                    <input type="password" matInput formControlName="password">
                     <mat-error *ngIf="form.get('password')!.hasError('required')">
                         Password is required
                     </mat-error>
                 </mat-form-field>
+
                 <div class="aligned-to-right">
                     <button type="button" mat-button color="primary" [disabled]="!form.get('email')!.valid" (click)="recoverPassword()" *ngIf="!isRecoveringPassword">
                         Recover password
@@ -28,11 +32,13 @@
                         <mat-spinner color="accent" diameter="20"></mat-spinner>
                     </button>
                 </div>
+
                 <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid" (click)="login()"
                     *ngIf="!isLoggingIn">Login</button>
                 <button mat-raised-button color="primary" *ngIf="isLoggingIn">
                     <mat-spinner color="accent" diameter="20"></mat-spinner>
                 </button>
+
                 <button type="button" mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
             </form>
         </mat-card-content>

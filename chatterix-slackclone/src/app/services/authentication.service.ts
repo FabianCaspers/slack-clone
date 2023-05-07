@@ -20,9 +20,20 @@ export class AuthenticationService {
   recoverPassword(email: string): Observable<void> {
     return from(this.auth.sendPasswordResetEmail(email))  //from transforms a promise to an observable
   }
+
+  register(params: Register): Observable<any> {
+    return from(this.auth.createUserWithEmailAndPassword(
+      params.email, params.password
+    ));
+  }
 }
 
 type SignIn = {
+  email: string;
+  password: string;
+}
+
+type Register = {
   email: string;
   password: string;
 }

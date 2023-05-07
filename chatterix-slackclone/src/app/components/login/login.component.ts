@@ -41,7 +41,7 @@ export class LoginComponent {
       })
     })
   }
-
+ 
   recoverPassword() {
     this.isRecoveringPassword = true;
 
