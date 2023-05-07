@@ -13,6 +13,7 @@ export class RegisterComponent {
 
   registerForm!: FormGroup;
   isRegistering = false;
+  pwVisible = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -20,7 +21,7 @@ export class RegisterComponent {
     private snackbar: MatSnackBar
   ) {
     this.registerForm = new FormGroup({
-      //'name': new FormControl('', Validators.required),
+      'name': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required)
     });
@@ -33,13 +34,21 @@ export class RegisterComponent {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password
     }).subscribe(() => {
-      this.router.navigate(['login']);
-      this.registerForm.reset();
+      this.isRegistering = false;
+      this.snackbar.open("You have registered succesfully. You will be directed to the login page.", "OK", {
+        duration: 3000
+      })
+      setTimeout(() => {
+        this.router.navigate(['login']);
+        this.registerForm.reset();
+      }, 3000);
     }, (error: any) => {
       this.isRegistering = false;
-      this.snackbar.open(error.message, "OK", {
+      this.snackbar.open("We are sorry, but the registration failed. Please check your details!", "OK", {
         duration: 5000
       })
     })
   }
+
+
 }

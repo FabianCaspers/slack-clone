@@ -4,7 +4,8 @@
 
             <form [formGroup]="form" class="example-form" (ngSubmit)="login()">
                 <h1>Login to your Account</h1>
-                <span class="introduction">Login to your existing account or register by clicking on the button down below!</span>
+                <span class="introduction">Login to your existing account or register by clicking on the button down
+                    below!</span>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
@@ -15,14 +16,18 @@
                     <mat-error *ngIf="form.get('email')!.hasError('email')">
                         Please enter a valid email address!
                     </mat-error>
+                    <mat-icon class="input-icon">email</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput formControlName="password">
+                    <input [type]="pwVisible ? 'text' : 'password'"  matInput formControlName="password">
                     <mat-error *ngIf="form.get('password')!.hasError('required')">
                         Please enter your password!
                     </mat-error>
+                    <button type="button" mat-icon-button class="input-icon move-right" (click)="pwVisible = !pwVisible">
+                        <mat-icon>{{pwVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
                 </mat-form-field>
 
                 <div class="aligned-to-right">

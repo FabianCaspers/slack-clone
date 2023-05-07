@@ -9,13 +9,14 @@
                 <h1>Register</h1>
                 <span class="introduction">Join the conversation by completing the registration form!</span>
 
-                <!--<mat-form-field class="example-full-width">
-                    <mat-label>User name</mat-label>
-                    <input matInput FormControlName="name">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Full Name</mat-label>
+                    <input type="name" matInput formControlName="name">
                     <mat-error *ngIf="registerForm.get('name')!.hasError('required')">
-                        Please enter your full Name!
+                        Please enter your full name!
                     </mat-error>
-                </mat-form-field>-->
+                    <mat-icon class="input-icon">account_box</mat-icon>
+                </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
@@ -26,14 +27,18 @@
                     <mat-error *ngIf="registerForm.get('email')!.hasError('email')">
                         Please enter a valid email address!
                     </mat-error>
+                    <mat-icon class="input-icon">email</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput formControlName="password">
+                    <input [type]="pwVisible ? 'text' : 'password'" matInput formControlName="password">
                     <mat-error *ngIf="registerForm.get('password')!.hasError('required')">
                         Password is required
                     </mat-error>
+                    <button type="button" mat-icon-button class="input-icon move-right" (click)="pwVisible = !pwVisible">
+                        <mat-icon>{{pwVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </button>
                 </mat-form-field>
 
                 <button type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid"

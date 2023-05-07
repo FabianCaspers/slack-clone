@@ -14,6 +14,7 @@ export class LoginComponent {
   form!: FormGroup;
   isLoggingIn = false;
   isRecoveringPassword = false;
+  pwVisible = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -37,7 +38,7 @@ export class LoginComponent {
       this.form.reset();
     }, (error: any) => {
       this.isLoggingIn = false;
-      this.snackbar.open(error.message, "OK", {
+      this.snackbar.open("Login failed! Check your details!", "OK", {
         duration: 5000
       })
     })
@@ -49,7 +50,7 @@ export class LoginComponent {
     this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
       this.isRecoveringPassword = false;
       this.form.reset();
-      this.snackbar.open("Email for recovering your password has been sent!", "OK", {
+      this.snackbar.open("An email for recovering your password has been sent!", "OK", {
         duration: 5000
       }), (error: any) => {
         this.isRecoveringPassword = false;

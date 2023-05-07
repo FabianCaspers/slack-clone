@@ -55,3 +55,16 @@ form {
         width: 100%;
     }
 }
+
+.input-icon {
+    width: auto !important;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.move-right {
+    margin-right: -12px !important;
+}
