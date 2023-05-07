@@ -1,3 +1,6 @@
+
+
+
 <mat-drawer-container class="drawer-container" autosize>
     <mat-drawer #drawer class="drawer-sidenav" [opened]="true" mode="side">
         <div class="sidenav-header">
@@ -6,11 +9,34 @@
 
     </mat-drawer>
   
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
-    </div>
+    <mat-toolbar color="primary">
+        <button type="button" (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-button [matMenuTriggerFor]="menu">Home Office</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>In a meeting</button>
+  <button mat-menu-item>Sick</button>
+  <button mat-menu-item>On vacation</button>
+  <button mat-menu-item>Home Office</button>
   
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="profile">Profile</button>
+<mat-menu #profile="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="profiles">Change activity status</button>
+  <button mat-menu-item>Logout</button>
+</mat-menu>
+
+<mat-menu #profiles="matMenu">
+  <button mat-menu-item>Online</button>
+  <button mat-menu-item>Away</button>
+  <button mat-menu-item>Do not disturbed</button>
+  <button mat-menu-item>Offline</button>
+
+</mat-menu>
+      </mat-toolbar>
   </mat-drawer-container>
+
+
   
