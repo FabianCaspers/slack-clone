@@ -33,7 +33,7 @@ export class LoginComponent {
       email: this.form.value.email,
       password: this.form.value.password
     }).subscribe(() => {
-      this.router.navigate(['register']);
+      this.router.navigate(['home']);
     }, (error: any) => {
       this.isLoggingIn = false;
       this.snackbar.open(error.message, "OK", {
