@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { from } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -31,10 +32,7 @@ export class RegisterComponent {
   register() {
     this.isRegistering = true;
 
-    this.authenticationService.register({
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password
-    }).subscribe(() => {
+    from(this.authenticationService.register(this.registerForm.value)).subscribe(() => {
       this.isRegistering = false;
       this.message = 'You have registered succesfully. You will be directed to the login page.';
       this.showMessage(this.message);

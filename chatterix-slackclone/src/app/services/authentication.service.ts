@@ -1,15 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
+import { Firestore } from '@angular/fire/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  firestore: Firestore = inject(Firestore);
+
 
   constructor(
     private auth: AngularFireAuth
   ) { }
+
 
   signIn(params: SignIn): Observable<any> {
     return from(this.auth.signInWithEmailAndPassword(
@@ -17,28 +23,37 @@ export class AuthenticationService {
     ));
   }
 
+
   recoverPassword(email: string): Observable<void> {
     return from(this.auth.sendPasswordResetEmail(email))  //from transforms a promise to an observable
   }
 
-  register(params: Register): Observable<any> {
-    return from(this.auth.createUserWithEmailAndPassword(
-      params.email, params.password
-    ));
+
+  async register(user: Register): Promise<any> {
+      const result = await this.auth.createUserWithEmailAndPassword(user.email, user.password);
+
+      const multiFactor: any = result.user?.multiFactor;
+      const uid = multiFactor?.user.uid;
+
+      const docRef = doc(this.firestore, "users", uid);
+      setDoc(docRef, user);                               //adds new document to collection users
   }
+
 
   logout(): Observable<void> {
     return from(this.auth.signOut());
   }
-  
 }
+
 
 type SignIn = {
   email: string;
   password: string;
 }
 
+
 type Register = {
+  name: string;
   email: string;
   password: string;
 }

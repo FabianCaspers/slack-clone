@@ -20,13 +20,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './components/home/home.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
 
@@ -55,6 +58,15 @@ import { MatDialog } from '@angular/material/dialog';
       messagingSenderId: "463616099616",
       appId: "1:463616099616:web:361eb3236f07c813e68345"
     }),
+    provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => initializeApp({
+      apiKey: "AIzaSyA3gsn8fS4lYU1-u53eDkb_J3UhaexCM3I",
+      authDomain: "slack-clone-c69b7.firebaseapp.com",
+      projectId: "slack-clone-c69b7",
+      storageBucket: "slack-clone-c69b7.appspot.com",
+      messagingSenderId: "463616099616",
+      appId: "1:463616099616:web:361eb3236f07c813e68345"
+    })),
     AngularFireAuthModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -66,7 +78,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatDialogModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatIconModule
+    MatIconModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
