@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, setDoc } from 'firebase/firestore';
+import { User } from '../models/user.model';
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class AuthenticationService {
   }
 
 
-  async register(user: Register): Promise<any> {
+  async register(user: User): Promise<any> {
       const result = await this.auth.createUserWithEmailAndPassword(user.email, user.password);
 
       const multiFactor: any = result.user?.multiFactor;
@@ -47,13 +48,6 @@ export class AuthenticationService {
 
 
 type SignIn = {
-  email: string;
-  password: string;
-}
-
-
-type Register = {
-  name: string;
   email: string;
   password: string;
 }

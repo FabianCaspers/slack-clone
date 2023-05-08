@@ -1,7 +1,13 @@
+export class User {
+  name: string;
+  email: string;
+  password: string;
+  
 
-export interface User {
-    uid: string;
-    name: string;
-    email: string;
+  constructor(obj?: any) {
+      this.name = obj ? obj.name : '';
+      this.email = obj ? obj.email : '';
+      this.password = obj ? obj.password : '';
   }
+}
   
