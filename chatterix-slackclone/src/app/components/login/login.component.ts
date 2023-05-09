@@ -17,7 +17,8 @@ export class LoginComponent {
   isRecoveringPassword: boolean = false;
   pwVisible: boolean = false;
   message: string = '';
-  emailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
+  emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
+
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -29,6 +30,7 @@ export class LoginComponent {
       'password': new FormControl('', Validators.required)
     });
   }
+
 
   login() {
     this.isLoggingIn = true;
@@ -45,6 +47,7 @@ export class LoginComponent {
     })
   }
 
+
   loginAsGuest() {
     this.isLoggingInGuest = true;
 
@@ -59,7 +62,8 @@ export class LoginComponent {
       this.showMessage(this.message);
     })
   }
- 
+
+
   recoverPassword() {
     this.isRecoveringPassword = true;
 
@@ -67,23 +71,36 @@ export class LoginComponent {
       this.isRecoveringPassword = false;
       this.form.reset();
       this.message = 'An email to recover your password has been sent!'
-      this.showMessage(this.message), (error: any) => {
-        this.isRecoveringPassword = false;
-        this.snackbar.open(error.message, "OK", {
-          duration: 5000
-        })
-      }
-    })
+      this.showMessage(this.message)
+    });
+
+    this.checkForError();
   }
+
 
   navigateToHome() {
     this.router.navigate(['home']);
     this.form.reset();
   }
 
+
   showMessage(message: string) {
     this.snackbar.open(message, "OK", {
       duration: 5000
     })
+  }
+
+  
+  checkForError() {
+    setTimeout(() => {
+      if (this.isRecoveringPassword === true) {
+        this.isRecoveringPassword = false;
+        this.form.reset();
+        this.message = 'Can not find a user corresponding to this email!'
+        this.snackbar.open(this.message, "OK", {
+          duration: 5000
+        });
+      }
+    }, 5000);
   }
 }
