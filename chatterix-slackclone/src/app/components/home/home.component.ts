@@ -1,15 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/services/users.service';
-import { DocumentData, collection, getDoc } from 'firebase/firestore';
-import { Observable } from 'rxjs';
-import { collectionData } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore } from '@angular/fire/firestore';
-import { doc, setDoc } from 'firebase/firestore';
 
 
 
@@ -20,30 +11,20 @@ import { doc, setDoc } from 'firebase/firestore';
 })
 export class HomeComponent implements OnInit {
 
-  firestore: Firestore = inject(Firestore);
-  users$!: Observable<DocumentData[]>;
-  users!: DocumentData[];
+  firstname!: string;
   showFiller = false;
 
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private usersService: UsersService,
+    public authenticationService: AuthenticationService,
     private router: Router
   ) { }
 
 
-  ngOnInit(): void {
-    //this.usersService.users.subscribe(users => {
-    //  this.users = users;
-    //});
-    const coll = collection(this.firestore, 'users');
-    this.users$ = collectionData(coll)
-    this.users$.subscribe((users) => {
-      this.users = users;
-      this.usersService.changeUsers(this.users);
-      console.log(this.users);
-    });
+  async ngOnInit() {
+    this.authenticationService.getCurrenctUserCollection();
+    await this.authenticationService.getCurrentUser();
+    this.firstname = this.authenticationService.user.firstname;
   }
 
 
@@ -56,6 +37,5 @@ export class HomeComponent implements OnInit {
 
   onMenuItemClick(newText: string, button: HTMLElement): void {
     button.innerText = newText;
-
   }
 }

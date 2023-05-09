@@ -96,7 +96,7 @@ export class LoginComponent {
       if (this.isRecoveringPassword === true) {
         this.isRecoveringPassword = false;
         this.form.reset();
-        this.message = 'Can not find a user corresponding to this email!'
+        this.message = 'We are experiencing issues recovering your password. Check your email address or try again later!'
         this.snackbar.open(this.message, "OK", {
           duration: 5000
         });

@@ -30,7 +30,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { UsersService } from './services/users.service';
 
 
 
@@ -83,7 +82,6 @@ import { UsersService } from './services/users.service';
     AngularFirestoreModule,
   ],
   providers: [
-    UsersService,
     AuthenticationService
   ],
   bootstrap: [AppComponent]
