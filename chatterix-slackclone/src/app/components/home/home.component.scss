@@ -4,7 +4,8 @@
     .drawer-sidenav {
         padding: 20px;
         width: 300px;
-        background-color: #2f41a5;
+        // background-color: #2f41a5;
+        background-color: #303E4D;
     }
     .sidenav-header {
         height: 60px;
@@ -31,6 +32,10 @@
             background-color: #2f41a5;
             border-radius: 12px;
         }
+    }
+
+    .headbar {
+        background-color: #28313D;
     }
 }
 
