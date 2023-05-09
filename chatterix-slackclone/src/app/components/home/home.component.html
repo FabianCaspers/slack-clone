@@ -22,8 +22,8 @@
           <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('On vacation 🌴', homeOfficeButton)">🌴 On vacation</button>
           <button class="changeStatus" mat-menu-item (click)="onMenuItemClick('Home Office 🧑🏽‍💻', homeOfficeButton)">🧑🏽‍💻 Home Office</button>
         </mat-menu>
-        
-        <button class="profile-container" mat-button [matMenuTriggerFor]="profile">HS</button>
+
+        <button class="profile-container" mat-button [matMenuTriggerFor]="profile">{{ getUserInitials() }}</button>
         <mat-menu #profile="matMenu">
           <button class="changeStatus" mat-menu-item [matMenuTriggerFor]="profiles">Activity status</button>
           <button class="changeStatus" mat-menu-item (click)="logout()">Logout</button>
