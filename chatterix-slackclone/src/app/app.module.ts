@@ -30,6 +30,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { ChannelsComponent } from './components/channels/channels.component';
+import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
 
 
 
@@ -41,7 +43,9 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     PrivacyPolicyComponent,
     RegisterComponent,
     WelcomeComponent,
-    HomeComponent
+    HomeComponent,
+    ChannelsComponent,
+    DmChannelsComponent
   ],
   imports: [
     BrowserModule,

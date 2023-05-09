@@ -15,6 +15,10 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     }
 
+    .sidenav-content {
+        padding: 1rem;
+    }
+
     .mat-button {
         background-color: transparent;
         border: none;
@@ -48,9 +52,7 @@
     justify-content: center;
     &:hover {
         background-color: lightgray;
-    }
-
-    
+    }  
 }
 
 .status-container {
@@ -72,3 +74,5 @@
     cursor: pointer;
     position: relative;
 }
+
+

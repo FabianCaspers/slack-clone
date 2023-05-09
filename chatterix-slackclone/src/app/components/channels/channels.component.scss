@@ -1,0 +1,41 @@
+.channels-container {
+    height: 50vh;
+    
+    .channels-headline {
+        p {
+            color: white;
+            margin-left: 1.87rem;
+        }
+    }
+
+    .channels-list {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.09)
+        }
+
+        .single-channel {
+            margin: 0 0 0 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+    }
+
+    .add-channel {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+        cursor: pointer;
+        color: white;
+
+        p {
+            margin: 0 0 0 4px;
+            color: white;
+        }
+    }
+}
