@@ -17,6 +17,7 @@ export class LoginComponent {
   isRecoveringPassword: boolean = false;
   pwVisible: boolean = false;
   message: string = '';
+  emailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -24,7 +25,7 @@ export class LoginComponent {
     private snackbar: MatSnackBar
   ) {
     this.form = new FormGroup({
-      'email': new FormControl('', [Validators.required, Validators.email]),
+      'email': new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
       'password': new FormControl('', Validators.required)
     });
   }
@@ -49,7 +50,7 @@ export class LoginComponent {
 
     this.authenticationService.signIn({
       email: 'guest@mail.de',
-      password: 'guestuser123'
+      password: 'Guestuser123'
     }).subscribe(() => {
       this.navigateToHome();
     }, (error: any) => {

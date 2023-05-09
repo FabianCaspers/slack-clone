@@ -16,6 +16,9 @@ export class RegisterComponent {
   isRegistering: boolean = false;
   pwVisible: boolean = false;
   message: string = '';
+  namePattern = "[a-zA-Z]+";
+  passwordPattern ="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+  emailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -23,9 +26,10 @@ export class RegisterComponent {
     private snackbar: MatSnackBar
   ) {
     this.registerForm = new FormGroup({
-      'name': new FormControl('', Validators.required),
-      'email': new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', Validators.required)
+      'firstname': new FormControl('', [Validators.required, Validators.pattern(this.namePattern), Validators.minLength(2), Validators.maxLength(12)]),
+      'lastname': new FormControl('', [Validators.required, Validators.pattern(this.namePattern), Validators.minLength(2), Validators.maxLength(12)]),
+      'email': new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
+      'password': new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)])
     });
   }
 

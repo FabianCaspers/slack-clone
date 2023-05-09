@@ -30,8 +30,14 @@ export class AuthenticationService {
   }
 
 
-  async register(user: User): Promise<any> {
-      const result = await this.auth.createUserWithEmailAndPassword(user.email, user.password);
+  async register(register: Register): Promise<any> {
+      const result = await this.auth.createUserWithEmailAndPassword(register.email, register.password);
+      
+      const user: User =  {
+        firstname: register.firstname,
+        lastname: register.lastname,
+        email: register.email
+      }
 
       const multiFactor: any = result.user?.multiFactor;
       const uid = multiFactor?.user.uid;
@@ -48,6 +54,14 @@ export class AuthenticationService {
 
 
 type SignIn = {
+  email: string;
+  password: string;
+}
+
+
+type Register = {
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
 }
