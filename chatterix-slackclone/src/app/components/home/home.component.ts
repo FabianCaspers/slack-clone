@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  firstname!: string;
   showFiller = false;
 
 
@@ -23,9 +22,21 @@ export class HomeComponent implements OnInit {
   // Read the firstname from logged user
   async ngOnInit() {
     this.authenticationService.getCurrenctUserCollection();
-    await this.authenticationService.getCurrentUser();
-    this.firstname = this.authenticationService.user.firstname;
+    setTimeout(() => {
+      this.authenticationService.getCurrentUser();
+    }, 500);
   }
+
+
+  getUserFirstname(): string {
+    const loggedInUser = this.authenticationService.user;
+    if (loggedInUser) {
+      const firstname = loggedInUser.firstname;
+      return firstname;
+    }
+    return '';
+  }
+
 
   // Shows the firstletter of first + lastname on the orange profile box
   getUserInitials(): string {
@@ -36,7 +47,7 @@ export class HomeComponent implements OnInit {
       return firstnameInitial + lastnameInitial;
     }
     return '';
-  }  
+  }
 
   // Logout function, goes back to login page
   logout() {
