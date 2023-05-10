@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
   selector: 'app-channels',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class ChannelsComponent {
 
+constructor(
+  private channelService: ChannelService
+) {}
+
+
+createNewChannel() {
+  
+}
 }

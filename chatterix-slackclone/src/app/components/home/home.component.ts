@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) { }
 
-  // Read the firstname from logged user
+
   async ngOnInit() {
     this.authenticationService.getCurrenctUserCollection();
     setTimeout(() => {
@@ -49,12 +49,14 @@ export class HomeComponent implements OnInit {
     return '';
   }
 
+
   // Logout function, goes back to login page
   logout() {
     this.authenticationService.logout().subscribe(() => {
       this.router.navigate(['login']);
     });
   }
+
 
   // Change status
   onMenuItemClick(newText: string, button: HTMLElement): void {
