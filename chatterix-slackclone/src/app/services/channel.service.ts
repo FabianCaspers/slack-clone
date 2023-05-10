@@ -7,7 +7,7 @@ import { Firestore } from 'firebase/firestore';
   providedIn: 'root'
 })
 export class ChannelService {
-  firestore: Firestore = inject(Firestore);
+  //firestore: Firestore = inject(Firestore);
   private channelsSource = new BehaviorSubject<Channel[]>([]);
   channels = this.channelsSource.asObservable();
 
