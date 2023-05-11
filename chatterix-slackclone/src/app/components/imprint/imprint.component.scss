@@ -1,0 +1,37 @@
+.imprint-container {
+    background-color: #28313d;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
+    .back-to-page {
+        color: darkgray;
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    h1 {
+        color: darkgray;
+        font-size: 4rem;
+    }
+
+    p {
+        color: lightgray;
+        font-size: 18px;
+        margin-left: 16px;
+    }
+
+    strong {
+        color: darkgray;
+        font-size: 24px;
+    }
+}
