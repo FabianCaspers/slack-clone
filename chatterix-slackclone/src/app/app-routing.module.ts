@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'imprint', component: ImprintComponent}
+  { path: 'imprint', component: ImprintComponent},
+  { path: 'privacy', component: PrivacyPolicyComponent}
 ];
 
 @NgModule({

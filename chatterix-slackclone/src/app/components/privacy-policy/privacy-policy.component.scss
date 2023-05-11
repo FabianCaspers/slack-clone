@@ -1,0 +1,40 @@
+.privacy-container {
+    background-color: #28313d;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 0;
+
+    .back-to-page {
+        color: darkgray;
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    h1 {
+        color: darkgray;
+        font-size: 4rem;
+    }
+
+    h2 {
+        color: lightgray;
+    }
+
+    p {
+        color: lightgray;
+    }
+
+    li {
+        color: lightgray;
+    }
+
+    a {
+        color: darkgray;
+    }
+}
