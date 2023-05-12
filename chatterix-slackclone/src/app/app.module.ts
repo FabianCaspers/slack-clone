@@ -32,6 +32,7 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
+import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-channel-dialog.component';
 
 
 
@@ -45,7 +46,8 @@ import { DmChannelsComponent } from './components/dm-channels/dm-channels.compon
     WelcomeComponent,
     HomeComponent,
     ChannelsComponent,
-    DmChannelsComponent
+    DmChannelsComponent,
+    AddChannelDialogComponent
   ],
   imports: [
     BrowserModule,
