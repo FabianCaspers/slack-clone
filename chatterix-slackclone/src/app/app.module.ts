@@ -34,6 +34,7 @@ import { ChannelsComponent } from './components/channels/channels.component';
 import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
 import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-channel-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 
 
 
@@ -48,7 +49,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ChannelsComponent,
     DmChannelsComponent,
-    AddChannelDialogComponent
+    AddChannelDialogComponent,
+    AddDmChannelDialogComponent
   ],
   imports: [
     BrowserModule,
