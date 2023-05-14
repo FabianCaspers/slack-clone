@@ -11,14 +11,15 @@
             example.</p>
     </div>
 
-    <form>
+    <form #channelForm="ngForm">
         <div class="dialog-input">
             <label>Name</label>
-            <input name="firstName" type="text">
+            <input name="channelName" type="text" [(ngModel)]="channelName">
         </div>
     
         <div class="button-container">
-            <button class="create-button" mat-raised-button>Create</button>
+            <button class="create-button" mat-raised-button (click)="createChannel()">Create</button>
+
         </div>
     
     </form>

@@ -1,23 +1,40 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Channel } from '../models/channel.model';
-import { Firestore } from 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChannelService {
-  //firestore: Firestore = inject(Firestore);
   private channelsSource = new BehaviorSubject<Channel[]>([]);
   channels = this.channelsSource.asObservable();
 
+  constructor(private firestore: AngularFirestore) { 
+    this.loadChannels();
+  }
 
-  constructor() { }
+  loadChannels() {
+    this.firestore.collection<Channel>('channels').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Channel;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    ).subscribe((channelData: any) => {
+      const channelList: Channel[] = channelData;
+      console.log(channelList); // Log the data to the console
+      this.channelsSource.next(channelList);
+    });
+  }
+  
 
-
-addFavorites(channel: Channel) {
+  addFavorites(channel: Channel) {
     this.channelsSource.next(this.channelsSource.getValue().concat(channel));
+  }
 }
+
 
 
 /**
@@ -33,4 +50,4 @@ addFavorites(channel: Channel) {
         this.favoritesSource.next(currentFavorites);
     }
 } */
-}
+

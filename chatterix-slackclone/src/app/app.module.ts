@@ -33,6 +33,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { ChannelsComponent } from './components/channels/channels.component';
 import { DmChannelsComponent } from './components/dm-channels/dm-channels.component';
 import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-channel-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -86,6 +87,7 @@ import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-chan
     MatButtonToggleModule,
     MatIconModule,
     AngularFirestoreModule,
+    FormsModule
   ],
   providers: [
     AuthenticationService
