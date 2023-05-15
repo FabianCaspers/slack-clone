@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AddChannelDialogComponent } from 'src/app/dialogs/add-channel-dialog/add-channel-dialog.component';
 import { ChannelService } from 'src/app/services/channel.service';
@@ -14,8 +13,7 @@ export class ChannelsComponent implements OnInit {
   channels: Channel[] = [];
 
   constructor(
-    public dialog: MatDialog, 
-    private firestore: AngularFirestore,
+    public dialog: MatDialog,
     private channelService: ChannelService
   ) {}
 

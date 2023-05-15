@@ -10,15 +10,15 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  firestore: Firestore = inject(Firestore);
-  users$!: Observable<DocumentData[]>;
+  private firestore: Firestore = inject(Firestore);
+  private users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
   userStatus: string = '';
   currentSignedInUserId: string = '';
   loggedInUserFromDb!: any;
   user: User = new User;
 
-
+ 
   constructor(
     private auth: AngularFireAuth
   ) {
