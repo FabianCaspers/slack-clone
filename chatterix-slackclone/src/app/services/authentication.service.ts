@@ -1,9 +1,10 @@
-import { Injectable, inject } from '@angular/core';
+import { Inject, Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
 import { Firestore, collectionData } from '@angular/fire/firestore';
-import { DocumentData, collection, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { DocumentData, collection, doc, getDoc, updateDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { User } from '../models/user.model';
+
 
 
 @Injectable({
@@ -20,16 +21,30 @@ export class AuthenticationService {
 
  
   constructor(
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
   ) {
     this.getCurrenctUserCollection();
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.currentSignedInUserId = user.uid;
-        console.log(this.currentSignedInUserId);
-      } else {
+        this.getUserFromDb().subscribe((userData: any) => {
+          this.user = userData;
+        });
       }
     });
+  }
+
+  getUserFromDb(): Observable<any> {
+    const db = getFirestore();
+    const userDoc = doc(db, 'users', this.currentSignedInUserId);
+    return from(getDoc(userDoc));
+  }
+  
+
+  
+  getUserStatus(userId: string): Observable<any> {
+    const userDoc = doc(this.firestore, 'users', userId);
+    return from(getDoc(userDoc));
   }
 
 
@@ -57,7 +72,17 @@ export class AuthenticationService {
     const docSnap = await getDoc(docRef);
     this.loggedInUserFromDb = docSnap.data();
     this.generateUserObject();
+    this.user.userStatus = this.loggedInUserFromDb.userStatus;
   }
+
+  updateStatus(newStatus: string): void {
+    this.user.userStatus = newStatus;
+    const userRef = doc(this.firestore, 'users', this.currentSignedInUserId);
+    updateDoc(userRef, {
+        userStatus: newStatus,
+    });
+}
+
 
 
   generateUserObject() {
@@ -98,6 +123,8 @@ export class AuthenticationService {
     return from(this.auth.signOut());
   }
 }
+
+
 
 
 type SignIn = {

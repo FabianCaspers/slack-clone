@@ -16,7 +16,8 @@
         </button>
         <span class="example-spacer">Chatterix</span>
 
-        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>Status</button>
+        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>{{status}}</button>
+
         <mat-menu #menu="matMenu">
             <div class="status-container">
                 <p>Select a status:</p>

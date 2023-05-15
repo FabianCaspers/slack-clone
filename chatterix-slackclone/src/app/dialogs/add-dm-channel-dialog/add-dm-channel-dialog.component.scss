@@ -3,6 +3,10 @@
     color: lightgray;
     padding: 2rem;
 
+    .mat-mdc-form-field {
+        min-width: 100% !important;
+    }
+
     .close-icon {
         position: absolute;
         top: 2rem;
@@ -23,6 +27,7 @@
             margin: 0;
             color: lightgray;
             font-size: 12px;
+            margin-bottom: 2rem;
         }
     }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -12,16 +14,22 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   showFiller = false;
+  status = '';
 
 
   constructor(
     public authenticationService: AuthenticationService,
-    private router: Router
+    public dialog: MatDialog,
+    private router: Router,
+    private firestore: AngularFirestore
   ) { }
 
 
   async ngOnInit() {
+    await this.authenticationService.getCurrentUser();
+    this.status = this.authenticationService.user.userStatus;
   }
+
 
 
   getUserFirstname(): string {
@@ -57,5 +65,16 @@ export class HomeComponent implements OnInit {
   // Change status
   onMenuItemClick(newText: string, button: HTMLElement): void {
     button.innerText = newText;
+    this.firestore
+      .collection('users')
+      .doc(this.authenticationService.user.userId)
+      .update({
+        userStatus: newText,
+      })
+    this.closeDialog();
+  }
+
+  closeDialog() {
+    this.dialog.closeAll();
   }
 }

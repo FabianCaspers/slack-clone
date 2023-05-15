@@ -16,6 +16,8 @@ export class AddDmChannelDialogComponent {
   selectUser: FormGroup;
   dmChannel = new DmChannel;
   selectedDmUser: any;
+  selectedUserName: string = '';
+
 
   constructor(
     public dialog: MatDialog,
@@ -26,6 +28,12 @@ export class AddDmChannelDialogComponent {
     this.selectUser = new FormGroup({
       'selectedUser': new FormControl('', Validators.required)
     });
+
+    // Shows selected user on the Button Start Conversation with...
+    this.selectUser.get('selectedUser')?.valueChanges.subscribe(user => {
+      this.selectedUserName = `${user['firstname']} ${user['lastname']}`;
+    });
+    
   }
 
 
