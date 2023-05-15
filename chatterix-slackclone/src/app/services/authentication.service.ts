@@ -22,6 +22,7 @@ export class AuthenticationService {
   constructor(
     private auth: AngularFireAuth
   ) {
+    this.getCurrenctUserCollection();
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.currentSignedInUserId = user.uid;
@@ -45,6 +46,7 @@ export class AuthenticationService {
     this.users$.subscribe((users) => {
       this.users = users;
       console.log(this.users)
+      this.getCurrentUser();
     });
   }
 

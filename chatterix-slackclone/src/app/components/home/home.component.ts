@@ -21,10 +21,6 @@ export class HomeComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.authenticationService.getCurrenctUserCollection();
-    setTimeout(() => {
-      this.authenticationService.getCurrentUser();
-    }, 500);
   }
 
 

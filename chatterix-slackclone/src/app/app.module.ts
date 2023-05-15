@@ -26,7 +26,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -35,6 +34,7 @@ import { DmChannelsComponent } from './components/dm-channels/dm-channels.compon
 import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-channel-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -89,7 +89,8 @@ import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add
     MatButtonToggleModule,
     MatIconModule,
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   providers: [
     AuthenticationService

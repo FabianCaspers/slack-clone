@@ -7,14 +7,27 @@
     </div>
 
     <div class="dialog-description">
-        <p>select with which user you want to start a new private conversation.</p>
+        <p>Select a user for your conversation.</p>
     </div>
 
-    <mat-form-field class="select-user" appearance="fill">
+    <form [formGroup]="selectUser">
+        <div class="dialog-input">
+            <mat-form-field appearance="fill">
+                <mat-label>Users</mat-label>
+                <mat-select>
+                    <!--<mat-option *ngFor="let user of users">
+                        {{user.name}}
+                    </mat-option>-->
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-            <p>Select a user TEST</p>
+        <div class="button-container">
+            <button class="create-button" type="submit" mat-raised-button [disabled]="">Create</button>
 
-    </mat-form-field>
+        </div>
+
+    </form>
 
     <div class="button-container">
         <button mat-raised-button class="create-button">Start conversation <span>with </span></button>
