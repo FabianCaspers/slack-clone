@@ -4,15 +4,17 @@ main {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    background-color: #28313D;
 }
 
 .introduction {
     margin-bottom: 32px;
-    color: #5e5e5e;
+    color: lightgray;
 }
 
 mat-card {
     padding: 0 32px 32px 32px;
+    background-color: #374657
 }
 
 mat-form-field {
@@ -29,6 +31,7 @@ form {
     h1 {
         width: 100%;
         text-align: left;
+        color: darkgray;
     }
 
     button, mat-form-field {
@@ -46,6 +49,9 @@ form {
     .aligned-to-right {
         text-align: right;
         width: 100%;
+        button {
+            color: darkgray;
+        }
     }
 }
 
@@ -69,10 +75,15 @@ form {
     margin: 32px 0;
     color: #5e5e5e;
 
+    p {
+        color: darkgray;
+    }
+
     hr {
         width: 80px;
         height: 1px;
         background-color: #5e5e5e;
+        
     }
 }
 
