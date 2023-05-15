@@ -17,7 +17,7 @@ export class AddChannelDialogComponent {
   constructor(
     public dialog: MatDialog,
     public channelService: ChannelService,
-    private firestore: AngularFirestore,
+    private firestore: AngularFirestore, 
     private authService: AuthenticationService 
   ) {
     this.input = new FormGroup({  

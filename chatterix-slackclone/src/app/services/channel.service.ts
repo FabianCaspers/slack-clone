@@ -11,7 +11,7 @@ export class ChannelService {
   private channelCollection: any;
   private channels$!: any;
   private channelsSource = new BehaviorSubject<Channel[]>([]);
-  channels = this.channelsSource.asObservable();
+  channels = this.channelsSource.asObservable(); 
 
   constructor() {
     this.channelCollection = collection(this.firestore, 'channels');

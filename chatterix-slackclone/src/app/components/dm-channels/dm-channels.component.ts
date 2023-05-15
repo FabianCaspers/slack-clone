@@ -15,5 +15,5 @@ export class DmChannelsComponent {
 
   openAddDmChannelDialog() {
     this.dialog.open(AddDmChannelDialogComponent)
-  }
+  } 
 }

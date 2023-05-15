@@ -13,7 +13,7 @@ export class AuthenticationService {
   private firestore: Firestore = inject(Firestore);
   private users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
-  userStatus: string = '';
+  userStatus: string = ''; 
   currentSignedInUserId: string = '';
   loggedInUserFromDb!: any;
   user: User = new User;

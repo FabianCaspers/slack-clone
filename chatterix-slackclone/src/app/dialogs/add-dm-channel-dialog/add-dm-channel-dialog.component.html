@@ -10,27 +10,23 @@
         <p>Select a user for your conversation.</p>
     </div>
 
-    <form [formGroup]="selectUser">
+    <form [formGroup]="selectUser" (ngSubmit)="createDmChannel()">
         <div class="dialog-input">
             <mat-form-field appearance="fill">
-                <mat-label>Users</mat-label>
-                <mat-select>
-                    <!--<mat-option *ngFor="let user of users">
-                        {{user.name}}
-                    </mat-option>-->
+                <mat-label>Select User</mat-label>
+                <mat-select formControlName="selectedUser">
+                    <mat-option *ngFor="let user of this.authenticationService.users"  [value]="user">
+                        {{user['firstname']}} {{user['lastname']}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
 
         <div class="button-container">
-            <button class="create-button" type="submit" mat-raised-button [disabled]="">Create</button>
-
+            <button type="submit" mat-raised-button class="create-button" [disabled]="selectUser.invalid">Start conversation <span>with </span></button>
         </div>
-
     </form>
 
-    <div class="button-container">
-        <button mat-raised-button class="create-button">Start conversation <span>with </span></button>
-    </div>
+
 
 </div>
