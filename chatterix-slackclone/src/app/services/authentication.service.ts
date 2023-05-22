@@ -12,14 +12,14 @@ import { User } from '../models/user.model';
 })
 export class AuthenticationService {
   private firestore: Firestore = inject(Firestore);
-  private users$!: Observable<DocumentData[]>;
+  users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
-  userStatus: string = ''; 
+  userStatus: string = '';
   currentSignedInUserId: string = '';
   loggedInUserFromDb!: any;
   user: User = new User;
 
- 
+
   constructor(
     private auth: AngularFireAuth,
   ) {
@@ -27,21 +27,22 @@ export class AuthenticationService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.currentSignedInUserId = user.uid;
-        this.getUserFromDb().subscribe((userData: any) => {
-          this.user = userData;
-        });
+        //this.getUserFromDb().subscribe((userData: any) => {
+        //  this.user = userData;
+        //});
       }
     });
   }
 
-  getUserFromDb(): Observable<any> {
+
+  /*getUserFromDb(): Observable<any> {
     const db = getFirestore();
     const userDoc = doc(db, 'users', this.currentSignedInUserId);
     return from(getDoc(userDoc));
-  }
-  
+  }*/
 
-  
+
+
   getUserStatus(userId: string): Observable<any> {
     const userDoc = doc(this.firestore, 'users', userId);
     return from(getDoc(userDoc));
@@ -60,8 +61,10 @@ export class AuthenticationService {
     this.users$ = collectionData(coll)
     this.users$.subscribe((users) => {
       this.users = users;
-      console.log(this.users)
-      this.getCurrentUser();
+      console.log(this.users);
+      if (this.currentSignedInUserId) {
+        this.getCurrentUser();
+      }
     });
   }
 
@@ -72,16 +75,16 @@ export class AuthenticationService {
     const docSnap = await getDoc(docRef);
     this.loggedInUserFromDb = docSnap.data();
     this.generateUserObject();
-    this.user.userStatus = this.loggedInUserFromDb.userStatus;
   }
+
 
   updateStatus(newStatus: string): void {
     this.user.userStatus = newStatus;
     const userRef = doc(this.firestore, 'users', this.currentSignedInUserId);
     updateDoc(userRef, {
-        userStatus: newStatus,
+      userStatus: newStatus,
     });
-}
+  }
 
 
 
@@ -101,21 +104,21 @@ export class AuthenticationService {
 
 
   async register(register: Register): Promise<any> {
-      const result = await this.auth.createUserWithEmailAndPassword(register.email, register.password);
+    const result = await this.auth.createUserWithEmailAndPassword(register.email, register.password);
 
-      const multiFactor: any = result.user?.multiFactor;
-      const uid = multiFactor?.user.uid;
-      
-      const user: User =  {
-        firstname: register.firstname,
-        lastname: register.lastname,
-        email: register.email,
-        userId: uid,
-        userStatus: this.userStatus
-      }
+    const multiFactor: any = result.user?.multiFactor;
+    const uid = multiFactor?.user.uid;
 
-      const docRef = doc(this.firestore, "users", uid);
-      setDoc(docRef, user);                               //adds new document to collection users
+    const user: User = {
+      firstname: register.firstname,
+      lastname: register.lastname,
+      email: register.email,
+      userId: uid,
+      userStatus: this.userStatus
+    }
+
+    const docRef = doc(this.firestore, "users", uid);
+    setDoc(docRef, user);                               //adds new document to collection users
   }
 
 

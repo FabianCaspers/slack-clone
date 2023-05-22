@@ -13,8 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HomeComponent implements OnInit {
 
-  showFiller = false;
-  status = '';
+  showFiller: boolean = false;
+  status: String = '';
 
 
   constructor(
@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
 
-  async ngOnInit() {
-    await this.authenticationService.getCurrentUser();
+  ngOnInit() {
+    this.authenticationService.getCurrenctUserCollection();
     this.status = this.authenticationService.user.userStatus;
   }
 
