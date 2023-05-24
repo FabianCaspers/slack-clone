@@ -26,8 +26,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.authenticationService.getCurrenctUserCollection();
-    this.status = this.authenticationService.user.userStatus;
+    
   }
 
 
