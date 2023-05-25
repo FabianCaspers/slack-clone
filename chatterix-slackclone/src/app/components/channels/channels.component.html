@@ -6,7 +6,7 @@
     
     <div class="channels-list" *ngFor="let channel of channels">
         <mat-icon>tag</mat-icon>
-        <p class="single-channel">{{channel.channelName}}</p>
+        <p (click)="navigateToChatroom(channel.channelName)" class="single-channel">{{channel.channelName}}</p>
     </div>
     
     <div (click)="createNewChannel()" class="add-channel">

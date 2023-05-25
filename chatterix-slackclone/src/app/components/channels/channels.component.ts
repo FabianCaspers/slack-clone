@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AddChannelDialogComponent } from 'src/app/dialogs/add-channel-dialog/add-channel-dialog.component';
 import { ChannelService } from 'src/app/services/channel.service';
 import { Channel } from 'src/app/models/channel.model';
@@ -14,6 +15,7 @@ export class ChannelsComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private channelService: ChannelService
   ) {}
 
@@ -25,6 +27,10 @@ export class ChannelsComponent implements OnInit {
 
   createNewChannel() {
     this.dialog.open(AddChannelDialogComponent)
+  }
+
+  navigateToChatroom(channelName: string) {
+    this.router.navigate(['/chatroom', channelName]);
   }
 }
 

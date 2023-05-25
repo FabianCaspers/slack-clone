@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'imprint', component: ImprintComponent},
+  { path: 'chatroom/:channelName', component: ChatroomComponent },
   { path: 'privacy', component: PrivacyPolicyComponent}
 ];
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChannelService } from 'src/app/services/channel.service';
+import { Channel } from 'src/app/models/channel.model';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -12,14 +13,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChatroomComponent {
 
-  channelName: string = '';
+  channelName: string[] = [];
 
-  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      const channelId = params['channelName'];
-    });
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private channelService: ChannelService
+    ) {}
+
+    ngOnInit() {
+      this.route.params.subscribe(params => {
+        this.channelName = params['channelName'];
+      });
+    }
+    
 
 }
