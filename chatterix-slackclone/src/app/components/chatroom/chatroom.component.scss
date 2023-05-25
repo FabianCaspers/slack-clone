@@ -1,0 +1,47 @@
+.chatroom-container {
+    background-color: darkgray;
+    color: white;
+
+    .chatroom-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        padding: 0px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+
+        .channel-name-container {
+            display: flex;
+            align-items: center;
+
+            .mat-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 0.5rem;
+            }
+
+            .material-icons {
+                font-size: 20px;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .channel-settings-container {
+
+            .material-icons {
+                font-size: 20px;
+            }
+
+            .mat-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+}

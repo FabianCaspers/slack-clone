@@ -35,6 +35,7 @@ import { AddChannelDialogComponent } from './dialogs/add-channel-dialog/add-chan
 import { FormsModule } from '@angular/forms';
 import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
 
 
 
@@ -50,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     ChannelsComponent,
     DmChannelsComponent,
     AddChannelDialogComponent,
-    AddDmChannelDialogComponent
+    AddDmChannelDialogComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
