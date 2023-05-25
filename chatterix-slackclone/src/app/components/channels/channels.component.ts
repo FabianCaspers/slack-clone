@@ -32,6 +32,10 @@ export class ChannelsComponent implements OnInit {
   navigateToChatroom(channelName: string) {
     this.router.navigate(['/chatroom', channelName]);
   }
+
+  // navigateToChatroom(channelName: string) {
+  //   this.channelService.setSelectedChannelName(channelName);
+  // }
 }
 
 

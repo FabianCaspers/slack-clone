@@ -12,6 +12,7 @@ export class ChannelService {
   private channels$!: any;
   private channelsSource = new BehaviorSubject<Channel[]>([]);
   channels = this.channelsSource.asObservable(); 
+  private selectedChannelName: string = '';
 
   constructor() {
     this.channelCollection = collection(this.firestore, 'channels');
@@ -19,6 +20,14 @@ export class ChannelService {
     this.channels$.subscribe((channels: Channel[]) => {
       this.channelsSource.next(channels);
     });
+  }
+
+  setSelectedChannelName(channelName: string) {
+    this.selectedChannelName = channelName;
+  }
+
+  getSelectedChannelName(): string {
+    return this.selectedChannelName;
   }
 }
 
