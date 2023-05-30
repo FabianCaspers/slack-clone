@@ -23,7 +23,8 @@ export class ChatroomComponent {
 
     ngOnInit() {
       this.route.params.subscribe(params => {
-        this.channelName = params['channelName'];
+        this.channelName = params['id'];
+        console.log(this.channelName)
       });
     }
     

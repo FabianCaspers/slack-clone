@@ -16,7 +16,7 @@
         </button>
         <span class="example-spacer">Chatterix</span>
 
-        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>{{status}}</button>
+        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>{{this.authenticationService.user.userStatus}}</button>
 
         <mat-menu #menu="matMenu">
             <div class="status-container">
@@ -43,5 +43,5 @@
         
     </mat-toolbar>
 
-    <app-chatroom></app-chatroom>
+    <router-outlet></router-outlet>
 </mat-drawer-container>

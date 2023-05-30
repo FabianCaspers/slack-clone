@@ -13,7 +13,11 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
+  {
+    path: 'home', component: HomeComponent, children: [
+      { path: 'channel-chatroom/:id', component: ChatroomComponent }
+    ]
+  },
   { path: 'imprint', component: ImprintComponent},
   { path: 'chatroom/:channelName', component: ChatroomComponent },
   { path: 'privacy', component: PrivacyPolicyComponent}
