@@ -1,49 +1,21 @@
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Channel } from '../models/channel.model';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChannelService {
-  private firestore: Firestore = inject(Firestore);
-  private channelCollection: any;
-  private channels$!: any;
-  private channelsSource = new BehaviorSubject<Channel[]>([]);
-  channels = this.channelsSource.asObservable(); 
-  private selectedChannelName: string = '';
+  allChannels = [];
 
-  constructor() {
-    this.channelCollection = collection(this.firestore, 'channels');
-    this.channels$ = collectionData(this.channelCollection)
-    this.channels$.subscribe((channels: Channel[]) => {
-      this.channelsSource.next(channels);
-    });
-  }
-
-  setSelectedChannelName(channelName: string) {
-    this.selectedChannelName = channelName;
-  }
-
-  getSelectedChannelName(): string {
-    return this.selectedChannelName;
+  constructor(
+    private firestore: AngularFirestore
+  ) {
+    this.firestore
+    .collection('channels')
+    .valueChanges({idField: 'channelId'})
+    .subscribe((changes:any) => {
+      this.allChannels = changes;
+    })
   }
 }
-
-
-
-/**
- * The function removes a Pokemon from the favorites array.
- * 
- * @param details - Details of the pokemon that is to be removed
- */
-/*removeFavorites(details: Details) {
-    const currentFavorites = this.favoritesSource.getValue();
-    const index = currentFavorites.findIndex(p => p.name === details.name);
-    if (index !== -1) {
-        currentFavorites.splice(index, 1);
-        this.favoritesSource.next(currentFavorites);
-    }
-} */
 

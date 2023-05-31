@@ -19,7 +19,6 @@ const routes: Routes = [
     ]
   },
   { path: 'imprint', component: ImprintComponent},
-  { path: 'chatroom/:channelName', component: ChatroomComponent },
   { path: 'privacy', component: PrivacyPolicyComponent}
 ];
 
