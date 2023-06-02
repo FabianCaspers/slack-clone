@@ -35,6 +35,7 @@ export class DmChannelsComponent implements OnInit {
             const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authenticationService.currentSignedInUserId);
             return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId, userId: this.authenticationService.currentSignedInUserId };
           });
+        console.log(this.allDmChannels)
         })
       }, 400);
   }
