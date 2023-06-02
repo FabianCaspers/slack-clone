@@ -7,10 +7,10 @@ export class Channel {
         this.createdFromUserId = obj ? obj.createdFromUserId : '';
     }
 
-    public toJSON() {
+    /*public toJSON() {
         return {
             channelName: this.channelName,
             createdFromUserId: this.createdFromUserId
         };
-    }
+    }*/
 }

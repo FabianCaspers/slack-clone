@@ -3,8 +3,13 @@
         <p>Directmessages</p>
     </div>
 
+    <div class="channels-list" *ngFor="let dmChannel of this.allDmChannels">
+        <mat-icon>tag</mat-icon>
+        <p class="single-channel">{{ getUsernameById(dmChannel['otherUserId']) }}</p>
+    </div>
+
     <div (click)="openAddDmChannelDialog()" class="dm-channel-add">
         <mat-icon>add</mat-icon>
         <p>New Directmessage</p>
     </div>
-</div> 
+</div>   

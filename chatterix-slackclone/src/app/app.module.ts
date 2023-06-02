@@ -36,6 +36,9 @@ import { FormsModule } from '@angular/forms';
 import { AddDmChannelDialogComponent } from './dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { DmChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
+import { ChannelService } from './services/channel.service';
+import { DmChannelService } from './services/dm-channel.service';
 
 
 
@@ -52,7 +55,8 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
     DmChannelsComponent,
     AddChannelDialogComponent,
     AddDmChannelDialogComponent,
-    ChatroomComponent
+    ChatroomComponent,
+    DmChatroomComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,9 @@ import { ChatroomComponent } from './components/chatroom/chatroom.component';
     MatSelectModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    ChannelService,
+    DmChannelService
   ],
   bootstrap: [AppComponent]
 })

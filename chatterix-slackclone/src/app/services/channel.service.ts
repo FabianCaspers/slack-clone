@@ -17,5 +17,5 @@ export class ChannelService {
       this.allChannels = changes;
     })
   }
-}
+} 
 

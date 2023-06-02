@@ -1,6 +1,25 @@
 .dm-channels-container {
     margin-top: 2rem;
 
+    .channels-list {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: #6698C8;
+            padding-left: 8px;
+        }
+
+        .single-channel {
+            margin: 0 0 0 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+    }
+
     .dm-channels-headline {
         p {
             color: white;
@@ -8,21 +27,10 @@
         }
     }
 
-    .material-icons {
-        font-size: 20px;
-    }
-
-    .mat-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        margin-right: 0.5rem;
-    }
-
     .dm-channel-add {
         display: flex;
         align-items: center;
+        color: white;
         margin-top: 1rem;
         cursor: pointer;
 
@@ -32,3 +40,22 @@
         }
     }
 }
+
+.channels-list {
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: #6698C8;
+            padding-left: 8px;
+        }
+
+        .single-channel {
+            margin: 0 0 0 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+    }

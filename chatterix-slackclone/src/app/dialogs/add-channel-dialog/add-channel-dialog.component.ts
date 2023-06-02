@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-channel-dialog.component.scss']
 })
 export class AddChannelDialogComponent {
-  input: FormGroup;
+  public input: FormGroup;
 
   constructor(
     public dialog: MatDialog,
@@ -30,7 +30,7 @@ export class AddChannelDialogComponent {
   }
 
   createChannel() {
-    const newChannel: Partial<Channel> = {
+    const newChannel: Channel = {
       channelName: this.input.value.newChannelName, 
       createdFromUserId: this.authService.currentSignedInUserId
     };

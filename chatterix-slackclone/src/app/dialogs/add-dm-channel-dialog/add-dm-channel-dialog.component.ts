@@ -33,7 +33,6 @@ export class AddDmChannelDialogComponent {
     this.selectUser.get('selectedUser')?.valueChanges.subscribe(user => {
       this.selectedUserName = `${user['firstname']} ${user['lastname']}`;
     });
-    
   }
 
 
