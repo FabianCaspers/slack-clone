@@ -34,8 +34,10 @@ export class DmChannelsComponent implements OnInit {
     if (user) {
       const firstName = user['firstname'];
       const lastName = user['lastname'];
-      const name = firstName + lastName;
+      const name = firstName + ' ' + lastName;
       return name;
+    } else {
+      throw new Error('Benutzer nicht gefunden');
     }
   }
 } 
