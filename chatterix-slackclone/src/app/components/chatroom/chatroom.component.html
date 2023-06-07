@@ -12,4 +12,28 @@
             </mat-menu>
         </div>
     </div>
+
+    <div class="chatroom-content">
+        <div class="chatroom-content-header">
+            <p>{{ getUserFirstname() }}, this is a public channel about <span>{{ channelService.channel.channelName }}</span></p>
+            <p>Your message can be read by all members.</p>
+            <p>Be the first one to say 'hello'!"</p>
+        </div>
+
+        <div class="chatroom-content-chat">
+
+        </div>
+
+        <div class="chatroom-content-textarea">
+            <form>
+                <div class="textformatting-container"></div>
+                <input name="messageText" type="text"
+                    placeholder="Nachricht an # {{ channelService.channel.channelName}}">
+
+                <div class="send-btn-container">
+                    <img class="send-icon" src="../../../assets/img/send-icon.png" alt="">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
