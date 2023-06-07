@@ -5,6 +5,7 @@ import { ChannelService } from 'src/app/services/channel.service';
 import { Channel } from 'src/app/models/channel.model';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DeleteChannelDialogComponent } from 'src/app/dialogs/delete-channel-dialog/delete-channel-dialog.component';
 
 
 @Component({
@@ -19,27 +20,21 @@ export class ChatroomComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private firestore: AngularFirestore
-    ) {}
+    private firestore: AngularFirestore,
+    private dialog: MatDialog,
+    public channelService: ChannelService
+  ) { }
 
 
-    ngOnInit() {
-    this.route.paramMap.subscribe((paramMap) =>{
-      this.channelId = paramMap.get('id')!;
-      this.getChannel();
-    })
-    }
-    
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap) => {
+      this.channelService.channelId = paramMap.get('id')!;
+      this.channelService.getChannel();
+    });
+  }
 
-    getChannel() {
-    this.firestore
-    .collection('channels')
-    .doc(this.channelId)
-    .valueChanges()
-    .subscribe((channel: any) => {
-      this.channelName = channel.channelName;
-      console.log(this.channelName)
-    })
-    }
 
+  openDeleteChannelDialog() {
+    this.dialog.open(DeleteChannelDialogComponent);
+  }
 }

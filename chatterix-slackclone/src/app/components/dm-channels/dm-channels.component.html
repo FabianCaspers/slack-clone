@@ -3,13 +3,13 @@
         <p>Directmessages</p>
     </div>
 
-    <div class="channels-list" *ngFor="let dmChannel of this.allDmChannels">
+    <div class="channels-list" *ngFor="let dmChannel of this.dmChannelService.allDmChannels">
         <mat-icon>tag</mat-icon>
-        <p class="single-channel">{{ getUsernameById(dmChannel['otherUserId']) }}</p>
+        <p [routerLink]="['dm-channel-chatroom/' + dmChannel['dmChannelId']]" class="single-channel">{{ getUsernameById(dmChannel['otherUserId']) }}</p>
     </div>
 
     <div (click)="openAddDmChannelDialog()" class="dm-channel-add">
         <mat-icon>add</mat-icon>
         <p>New Directmessage</p>
     </div>
-</div>   
+</div>    

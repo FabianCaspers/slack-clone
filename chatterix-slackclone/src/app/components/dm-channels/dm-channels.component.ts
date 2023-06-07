@@ -11,7 +11,6 @@ import { DmChannelService } from 'src/app/services/dm-channel.service';
   styleUrls: ['./dm-channels.component.scss']
 })
 export class DmChannelsComponent implements OnInit {
-  allDmChannels = [];
 
   constructor(
     private firestore: AngularFirestore,
@@ -21,23 +20,7 @@ export class DmChannelsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getDmChannels()
-  }
-
-
-  getDmChannels() {
-    setTimeout(() => {
-      this.firestore
-        .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authenticationService.currentSignedInUserId))
-        .valueChanges({ idField: 'dmChannelId' })
-        .subscribe((changes: any) => {
-          this.allDmChannels = changes.map((dmChannel: any) => {
-            const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authenticationService.currentSignedInUserId);
-            return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId, userId: this.authenticationService.currentSignedInUserId };
-          });
-        console.log(this.allDmChannels)
-        })
-      }, 400);
+    this.dmChannelService.getAllDmChannels()
   }
 
 

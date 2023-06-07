@@ -15,7 +15,7 @@ export class AuthenticationService {
   users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
   userStatus: string = '';
-  currentSignedInUserId: string = '';
+  currentSignedInUserId!: string;
   loggedInUserFromDb!: any;
   user: User = new User;
 
@@ -27,20 +27,9 @@ export class AuthenticationService {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         this.currentSignedInUserId = user.uid;
-        //this.getUserFromDb().subscribe((userData: any) => {
-        //  this.user = userData;
-        //});
       }
     });
   }
-
-
-  /*getUserFromDb(): Observable<any> {
-    const db = getFirestore();
-    const userDoc = doc(db, 'users', this.currentSignedInUserId);
-    return from(getDoc(userDoc));
-  }*/
-
 
 
   getUserStatus(userId: string): Observable<any> {

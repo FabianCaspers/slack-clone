@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ImprintComponent } from './components/imprint/imprint.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { DmChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'home', component: HomeComponent, children: [
-      { path: 'channel-chatroom/:id', component: ChatroomComponent }
+      { path: 'channel-chatroom/:id', component: ChatroomComponent },
+      { path: 'dm-channel-chatroom/:id', component: DmChatroomComponent }
     ]
   },
   { path: 'imprint', component: ImprintComponent},
