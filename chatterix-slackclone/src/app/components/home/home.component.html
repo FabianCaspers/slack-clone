@@ -16,7 +16,7 @@
         </button>
         <span class="example-spacer">Chatterix</span>
 
-        <button class="mat-button"  [matMenuTriggerFor]="menu" #homeOfficeButton>{{this.authenticationService.user.userStatus}}</button>
+        <button class="mat-button" [matMenuTriggerFor]="menu" #homeOfficeButton>{{this.authenticationService.user.userStatus ? this.authenticationService.user.userStatus : 'Select a status'}}</button>
 
         <mat-menu #menu="matMenu">
             <div class="status-container">
