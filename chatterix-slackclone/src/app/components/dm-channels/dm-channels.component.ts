@@ -61,4 +61,14 @@ export class DmChannelsComponent implements OnInit {
       return userActivityStatus;
     }
   }
+
+
+  getUserOnlineStatus(otherUserId: string) {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    if (user) {
+      const color = user['onlineStatus'];
+      return color;
+    }
+    return '';
+  }
 } 

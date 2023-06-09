@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
 
 
   async ngOnInit() {
-    
   }
 
 
@@ -50,11 +49,33 @@ export class HomeComponent implements OnInit {
   }
 
 
+  getUserOnlineStatus(): string {
+    const loggedInUser = this.authenticationService.loggedInUserFromDb;
+    if (loggedInUser) {
+      console.log(loggedInUser)
+      const color = loggedInUser['onlineStatus'];
+      return color;
+    }
+    return '';
+  }
+
+
   // Logout function, goes back to login page
   logout() {
+    //this.setUserOnlineStatus('red');
     this.authenticationService.logout().subscribe(() => {
       this.router.navigate(['login']);
     });
+  }
+
+
+  setUserOnlineStatus(color: string) {
+    this.firestore
+      .collection('users')
+      .doc(this.authenticationService.user.userId)
+      .update({
+        onlineStatus: color,
+      });
   }
 
 
@@ -66,7 +87,7 @@ export class HomeComponent implements OnInit {
       .doc(this.authenticationService.user.userId)
       .update({
         userStatus: newText,
-      })
+      });
     this.closeDialog();
   }
 

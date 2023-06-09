@@ -5,7 +5,7 @@
 
     <div class="channels-list" *ngFor="let dmChannel of this.dmChannelService.allDmChannels">
         <div class="chat-icon">{{ getUserInitialsById(dmChannel['otherUserId']) }}
-            <div class="online-dot"></div>
+            <div class="online-dot {{ getUserOnlineStatus(dmChannel['otherUserId']) }}"></div>
         </div>
         <p [routerLink]="['dm-channel-chatroom/' + dmChannel['dmChannelId']]" class="single-channel">{{
             getUsernameById(dmChannel['otherUserId']) }} {{ getUserStatusById(dmChannel['otherUserId']) }}</p>

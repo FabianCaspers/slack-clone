@@ -82,8 +82,15 @@
     position: relative;
 }
 
-app-channels {
-    margin-bottom: 20px;
+.online-dot {
+    position: absolute;
+    bottom: -14px;
+    right: -12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
 }
+
+
 
 

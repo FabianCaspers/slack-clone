@@ -4,6 +4,7 @@ export class User {
   email: string;
   userId: string;
   userStatus: string;
+  onlineStatus: string;
 
 
   constructor(obj?: any) {
@@ -12,6 +13,7 @@ export class User {
     this.email = obj ? obj.email : '';
     this.userId = obj ? obj.userId : '';
     this.userStatus = obj ? obj.userStatus : '';
+    this.onlineStatus = obj ? obj.onlineStatus : '';
   }
 
   /*public toJSON() {

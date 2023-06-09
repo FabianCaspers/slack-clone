@@ -15,6 +15,7 @@ export class AuthenticationService {
   users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
   userStatus: string = '';
+  onlineStatus: string = '';
   currentSignedInUserId!: string;
   loggedInUserFromDb!: any;
   user: User = new User;
@@ -83,6 +84,7 @@ export class AuthenticationService {
     this.user.email = this.loggedInUserFromDb.email;
     this.user.userId = this.loggedInUserFromDb.userId;
     this.user.userStatus = this.loggedInUserFromDb.userStatus;
+    this.user.onlineStatus = this.loggedInUserFromDb.onlineStatus;
     console.log(this.user)
   }
 
@@ -103,7 +105,8 @@ export class AuthenticationService {
       lastname: register.lastname,
       email: register.email,
       userId: uid,
-      userStatus: this.userStatus
+      userStatus: this.userStatus,
+      onlineStatus: this.onlineStatus
     }
 
     const docRef = doc(this.firestore, "users", uid);
