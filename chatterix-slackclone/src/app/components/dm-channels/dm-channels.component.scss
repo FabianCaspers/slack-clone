@@ -23,7 +23,7 @@
     .dm-channels-headline {
         p {
             color: white;
-            margin-left: 30.5px;
+            font-size: 20px;
         }
     }
 
@@ -42,20 +42,42 @@
 }
 
 .channels-list {
-        display: flex;
-        align-items: center;
-        color: white;
-        margin-bottom: 0.5rem;
-        border-radius: 8px;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
 
-        &:hover {
-            background-color: #6698C8;
-            padding-left: 8px;
-        }
-
-        .single-channel {
-            margin: 0 0 0 8px;
-            cursor: pointer;
-            width: 100%;
-        }
+    &:hover {
+        background-color: #6698C8;
+        padding-left: 8px;
     }
+
+    .single-channel {
+        margin: 0 0 0 8px;
+        cursor: pointer;
+        width: 100%;
+    }
+}
+
+.chat-icon {
+    width: 40px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.online-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #00ff00;
+}

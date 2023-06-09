@@ -17,7 +17,7 @@ export class DmChannelsComponent implements OnInit {
     public dialog: MatDialog,
     public dmChannelService: DmChannelService,
     private authenticationService: AuthenticationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dmChannelService.getAllDmChannels()
@@ -28,7 +28,19 @@ export class DmChannelsComponent implements OnInit {
     this.dialog.open(AddDmChannelDialogComponent)
   }
 
-  
+
+  getUserInitialsById(otherUserId: String) {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    if (user) {
+      const firstLeter = user['firstname'].charAt(0).toUpperCase();
+      const lastLetter = user['lastname'].charAt(0).toUpperCase();
+      return firstLeter + lastLetter;
+    } else {
+      throw new Error('Benutzer nicht gefunden');
+    }
+  }
+
+
   getUsernameById(otherUserId: string) {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
@@ -38,6 +50,15 @@ export class DmChannelsComponent implements OnInit {
       return name;
     } else {
       throw new Error('Benutzer nicht gefunden');
+    }
+  }
+
+
+  getUserStatusById(otherUserId: string) {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    if (user) {
+      const userActivityStatus = user['userStatus'].substring(user['userStatus'].length - 2);
+      return userActivityStatus;
     }
   }
 } 

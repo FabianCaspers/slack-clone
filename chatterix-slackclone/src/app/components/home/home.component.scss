@@ -17,6 +17,7 @@
     }
 
     .sidenav-content {
+        gap: 20px;
         padding: 1rem;
     }
 
@@ -79,6 +80,10 @@
     font-size: 15px;
     cursor: pointer;
     position: relative;
+}
+
+app-channels {
+    margin-bottom: 20px;
 }
 
 
