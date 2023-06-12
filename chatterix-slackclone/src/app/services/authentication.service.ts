@@ -4,6 +4,7 @@ import { Observable, from } from 'rxjs';
 import { Firestore, collectionData } from '@angular/fire/firestore';
 import { DocumentData, collection, doc, getDoc, updateDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { User } from '../models/user.model';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 
@@ -15,7 +16,7 @@ export class AuthenticationService {
   users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
   userStatus: string = '';
-  onlineStatus: string = '';
+  onlineStatus!: string;
   currentSignedInUserId!: string;
   loggedInUserFromDb!: any;
   user: User = new User;
@@ -23,6 +24,7 @@ export class AuthenticationService {
 
   constructor(
     private auth: AngularFireAuth,
+    private firestore2: AngularFirestore
   ) {
     this.getCurrenctUserCollection();
     this.auth.onAuthStateChanged((user) => {
@@ -36,6 +38,14 @@ export class AuthenticationService {
   getUserStatus(userId: string): Observable<any> {
     const userDoc = doc(this.firestore, 'users', userId);
     return from(getDoc(userDoc));
+  }
+
+
+  setUserOnlineStatus(color: string) {
+    const userRef = doc(this.firestore, 'users', this.user.userId);
+    updateDoc(userRef, {
+      onlineStatus: color,
+    });
   }
 
 

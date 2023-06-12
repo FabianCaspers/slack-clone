@@ -37,10 +37,10 @@
           <button class="changeStatus" mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
         <mat-menu #profiles="matMenu">
-          <button class="changeStatus" (click)="setUserOnlineStatus('green')" mat-menu-item>Online</button>
-          <button class="changeStatus" (click)="setUserOnlineStatus('yellow')" mat-menu-item>Away</button>
-          <button class="changeStatus" (click)="setUserOnlineStatus('grey')" mat-menu-item>Do not disturbed</button>
-          <button class="changeStatus" (click)="setUserOnlineStatus('red')" mat-menu-item>Offline</button>
+          <button class="changeStatus" (click)="this.authenticationService.setUserOnlineStatus('green')" mat-menu-item>Online</button>
+          <button class="changeStatus" (click)="this.authenticationService.setUserOnlineStatus('yellow')" mat-menu-item>Away</button>
+          <button class="changeStatus" (click)="this.authenticationService.setUserOnlineStatus('grey')" mat-menu-item>Do not disturbed</button>
+          <button class="changeStatus" (click)="this.authenticationService.setUserOnlineStatus('red')" mat-menu-item>Offline</button>
         </mat-menu>
         
     </mat-toolbar>

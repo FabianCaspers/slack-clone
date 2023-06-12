@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   // Logout function, goes back to login page
   logout() {
-    //this.setUserOnlineStatus('red');
+    this.authenticationService.setUserOnlineStatus('red');
     this.authenticationService.logout().subscribe(() => {
       this.router.navigate(['login']);
     });

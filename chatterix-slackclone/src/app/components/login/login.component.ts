@@ -40,6 +40,7 @@ export class LoginComponent {
       password: this.form.value.password
     }).subscribe(() => {
       this.navigateToHome();
+      this.authenticationService.setUserOnlineStatus('green');
     }, (error: any) => {
       this.isLoggingIn = false;
       this.message = 'Login failed! Check your details!'
@@ -56,6 +57,7 @@ export class LoginComponent {
       password: 'Guestuser123'
     }).subscribe(() => {
       this.navigateToHome();
+      this.authenticationService.setUserOnlineStatus('green');
     }, (error: any) => {
       this.isLoggingInGuest = false;
       this.message = 'Guest login failed. Please try again later!'
