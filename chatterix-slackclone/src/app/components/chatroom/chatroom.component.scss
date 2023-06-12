@@ -49,6 +49,57 @@
         height: calc(100svh - 165px);
         background-color: #222529;
 
+        .chatroom-content-chat {
+            display: flex;
+            .full-message-container {
+                width: 100%;
+                display: flex;
+                padding: 0.5rem;
+                &:hover {
+                    background-color: #222529;
+                    .message-setting-container {
+                        display: unset;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-left: auto;
+                        cursor: pointer;
+                    }
+                }
+                .message-infos-container {
+
+                    .author-container {
+                        display: flex;
+
+                        .author {
+                            margin-right: 1rem;
+                            font-weight: 700;
+                            margin-bottom: 0;
+                            font-size: 13px;
+                        }
+
+                        .time {
+                            font-size: 0.6rem;
+                            color: rgba(255, 255, 255, 0.7);
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                .message-text-container {
+
+                    .message-text {
+                        font-size: 13px;
+                        color: rgba(255, 255, 255, 0.85);
+                        margin: 0;
+                    }
+                }
+                .message-setting-container {
+                    display: none;
+                }
+
+            }
+        }
+
         .chatroom-content-header {
             padding: 0.5rem;
             margin-bottom: 2rem;
