@@ -16,7 +16,7 @@ export class AuthenticationService {
   users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
   userStatus: string = '';
-  onlineStatus!: string;
+  onlineStatus: string = '';
   currentSignedInUserId!: string;
   loggedInUserFromDb!: any;
   user: User = new User;
@@ -42,10 +42,12 @@ export class AuthenticationService {
 
 
   setUserOnlineStatus(color: string) {
-    const userRef = doc(this.firestore, 'users', this.user.userId);
-    updateDoc(userRef, {
-      onlineStatus: color,
-    });
+    this.firestore2
+      .collection('users')
+      .doc(this.currentSignedInUserId)
+      .update({
+        onlineStatus: color,
+      });
   }
 
 

@@ -69,16 +69,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  setUserOnlineStatus(color: string) {
-    this.firestore
-      .collection('users')
-      .doc(this.authenticationService.user.userId)
-      .update({
-        onlineStatus: color,
-      });
-  }
-
-
   // Change status
   onMenuItemClick(newText: string, button: HTMLElement): void {
     button.innerText = newText;
