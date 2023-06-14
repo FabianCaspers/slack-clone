@@ -17,7 +17,7 @@ export class DeleteChannelDialogComponent {
   
   closeDialog() {
     this.dialog.closeAll();
-  }
+  } 
 
 
   deleteChannel() {

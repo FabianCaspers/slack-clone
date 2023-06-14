@@ -3,12 +3,12 @@
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
-            <p>Private message to {{ name }}</p>
+            <p>Private message to {{ channelService.name }}</p>
         </div>
         <div class="channel-settings-container">
             <mat-icon [matMenuTriggerFor]="menu">settings</mat-icon>
             <mat-menu #menu="matMenu">
-                <button (click)="openDeleteDmChannelDialog()" mat-menu-item>Delete chat with {{ name }}</button>
+                <button (click)="openDeleteDmChannelDialog()" mat-menu-item>Delete chat with {{ channelService.name }}</button>
             </mat-menu>
         </div>
     </div>

@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
   getUserOnlineStatus(): string {
     const loggedInUser = this.authenticationService.loggedInUserFromDb;
     if (loggedInUser) {
-      console.log(loggedInUser)
       const color = loggedInUser['onlineStatus'];
       return color;
     }

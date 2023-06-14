@@ -15,7 +15,12 @@ export class DeleteDmChannelDialogComponent {
   ) {}
 
   
-  closeDialog() {
+  closeDialog() { 
     this.dialog.closeAll();
+  }
+
+
+  deleteDmChannel() {
+    this.channelService.deleteDmChannelFromDb();
   }
 }

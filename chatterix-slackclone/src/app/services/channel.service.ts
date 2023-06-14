@@ -10,10 +10,10 @@ import { DeleteNoticeDialogComponentComponent } from '../dialogs/delete-notice-d
   providedIn: 'root'
 })
 export class ChannelService {
-  allChannels = [];
-  channelId!: string;
-  channel: any;
-  channelName!: string;
+  public allChannels = [];
+  public channelId!: string;
+  public channel: any;
+  public channelName!: string;
 
   constructor(
     private firestore: AngularFirestore,
@@ -64,8 +64,8 @@ export class ChannelService {
 
   
   openSnackBar() {
-    let message = 'Channel ' + `"${this.channel.channelName}"` + ' was deleted'
-    let action = 'Got it'
+    const message = 'Channel ' + `"${this.channelName}"` + ' was deleted'
+    const action = 'Got it'
 
     this.snackbar.open(message, action, {
       duration: 3000

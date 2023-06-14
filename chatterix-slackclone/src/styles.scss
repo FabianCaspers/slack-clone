@@ -66,3 +66,22 @@ mat-error {
 .grey {
   background-color: grey;
 }
+
+/* Globale Scrollbar-Styling-Regeln */
+::-webkit-scrollbar {
+  width: 6px; /* Breite der Scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  width: 8px;
+  background-color: #f1f1f1; /* Hintergrundfarbe des Scrollbalkens */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1e2a39; /* Farbe des Scrollbalken-Daumens */
+  border-radius: 4px; /* Abrundung des Scrollbalken-Daumens */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #333f4f; /* Farbe des Scrollbalken-Daumens bei Hover */
+}

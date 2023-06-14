@@ -15,13 +15,9 @@ import { DmChannelService } from 'src/app/services/dm-channel.service';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent {
-  private channelId: string = '';
-  public channelName: string = '';
-
 
   constructor(
     private route: ActivatedRoute,
-    private firestore: AngularFirestore,
     private dialog: MatDialog,
     public channelService: ChannelService,
     public dmChannelService: DmChannelService,
@@ -68,4 +64,4 @@ export class ChatroomComponent {
       throw new Error('Benutzer nicht gefunden');
     }
   }
-}
+} 
