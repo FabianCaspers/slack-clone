@@ -10,7 +10,7 @@ import { DeleteNoticeDialogComponentComponent } from '../dialogs/delete-notice-d
   providedIn: 'root'
 })
 export class ChannelService {
-  public allChannels = [];
+  public allChannels: any[] = [];
   public channelId!: string;
   public channel: any;
   public channelName!: string;
@@ -64,7 +64,7 @@ export class ChannelService {
 
   
   openSnackBar() {
-    const message = 'Channel ' + `"${this.channelName}"` + ' was deleted'
+    const message = 'Channel "' + this.channelName + '"  was deleted'
     const action = 'Got it'
 
     this.snackbar.open(message, action, {

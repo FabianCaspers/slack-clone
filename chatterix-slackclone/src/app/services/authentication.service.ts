@@ -1,8 +1,8 @@
-import { Inject, Injectable, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
-import { Firestore, collectionData } from '@angular/fire/firestore';
-import { DocumentData, collection, doc, getDoc, updateDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { collectionData } from '@angular/fire/firestore';
+import { DocumentData, collection, doc, getDoc, updateDoc, getFirestore } from 'firebase/firestore';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -12,11 +12,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private firestore: Firestore = inject(Firestore);
-  users$!: Observable<DocumentData[]>;
   users!: DocumentData[];
-  userStatus: string = '';
-  onlineStatus: string = '';
+  userStatus!: string;
+  onlineStatus!: string;
   currentSignedInUserId!: string;
   loggedInUserFromDb!: any;
   user: User = new User;
@@ -24,7 +22,7 @@ export class AuthenticationService {
 
   constructor(
     private auth: AngularFireAuth,
-    private firestore2: AngularFirestore
+    private firestore: AngularFirestore
   ) {
     this.getCurrenctUserCollection();
     this.auth.onAuthStateChanged((user) => {
@@ -36,13 +34,12 @@ export class AuthenticationService {
 
 
   getUserStatus(userId: string): Observable<any> {
-    const userDoc = doc(this.firestore, 'users', userId);
-    return from(getDoc(userDoc));
+    return from(this.firestore.collection('users').doc(userId).get());
   }
 
 
   setUserOnlineStatus(color: string) {
-    this.firestore2
+    this.firestore
       .collection('users')
       .doc(this.currentSignedInUserId)
       .update({
@@ -59,11 +56,10 @@ export class AuthenticationService {
 
 
   getCurrenctUserCollection() {
-    const coll = collection(this.firestore, 'users');
-    this.users$ = collectionData(coll)
-    this.users$.subscribe((users) => {
+    this.firestore.collection('users')
+    .valueChanges()
+    .subscribe((users: any) => {
       this.users = users;
-      console.log(this.users);
       if (this.currentSignedInUserId) {
         this.getCurrentUser();
       }
@@ -72,9 +68,8 @@ export class AuthenticationService {
 
 
   async getCurrentUser() {
-    const db = getFirestore();
-    const docRef = doc(db, 'users', this.currentSignedInUserId);
-    const docSnap = await getDoc(docRef);
+    const docRef = this.firestore.collection('users').doc(this.currentSignedInUserId).ref;
+    const docSnap = await docRef.get();
     this.loggedInUserFromDb = docSnap.data();
     this.generateUserObject();
   }
@@ -82,12 +77,11 @@ export class AuthenticationService {
 
   updateStatus(newStatus: string): void {
     this.user.userStatus = newStatus;
-    const userRef = doc(this.firestore, 'users', this.currentSignedInUserId);
-    updateDoc(userRef, {
+    const userRef = this.firestore.collection('users').doc(this.currentSignedInUserId).ref;
+    userRef.update({
       userStatus: newStatus,
     });
   }
-
 
 
   generateUserObject() {
@@ -102,7 +96,7 @@ export class AuthenticationService {
 
 
   recoverPassword(email: string): Observable<void> {
-    return from(this.auth.sendPasswordResetEmail(email))  //from transforms a promise to an observable
+    return from(this.auth.sendPasswordResetEmail(email));
   }
 
 
@@ -121,8 +115,7 @@ export class AuthenticationService {
       onlineStatus: this.onlineStatus
     }
 
-    const docRef = doc(this.firestore, "users", uid);
-    setDoc(docRef, user);                               //adds new document to collection users
+    this.firestore.collection('users').doc(uid).set(user);
   }
 
 
@@ -130,8 +123,6 @@ export class AuthenticationService {
     return from(this.auth.signOut());
   }
 }
-
-
 
 
 type SignIn = {

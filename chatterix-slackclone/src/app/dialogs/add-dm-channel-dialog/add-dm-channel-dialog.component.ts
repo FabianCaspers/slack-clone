@@ -12,26 +12,18 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./add-dm-channel-dialog.component.scss']
 })
 export class AddDmChannelDialogComponent {
-  users;
   selectUser: FormGroup;
   dmChannel = new DmChannel;
   selectedDmUser: any;
   selectedUserName: string = '';
-
 
   constructor(
     public dialog: MatDialog,
     public authenticationService: AuthenticationService,
     private firestore: AngularFirestore
   ) {
-    this.users = this.authenticationService.users;
     this.selectUser = new FormGroup({
       'selectedUser': new FormControl('', Validators.required)
-    });
-
-    // Shows selected user on the Button Start Conversation with...
-    this.selectUser.get('selectedUser')?.valueChanges.subscribe(user => {
-      this.selectedUserName = `${user['firstname']} ${user['lastname']}`;
     });
   }
 

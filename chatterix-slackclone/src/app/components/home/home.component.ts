@@ -4,16 +4,12 @@ import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  showFiller: boolean = false;
 
   constructor(
     public authenticationService: AuthenticationService,
@@ -23,43 +19,28 @@ export class HomeComponent implements OnInit {
   ) { }
 
 
-  async ngOnInit() {
+  ngOnInit() {
   }
 
 
   getUserFirstname(): string {
     const loggedInUser = this.authenticationService.user;
-    if (loggedInUser) {
-      const firstname = loggedInUser.firstname;
-      return firstname;
-    }
-    return '';
+    return loggedInUser ? loggedInUser.firstname : '';
   }
 
 
-  // Shows the firstletter of first + lastname on the orange profile box
   getUserInitials(): string {
     const loggedInUser = this.authenticationService.user;
-    if (loggedInUser) {
-      const firstnameInitial = loggedInUser.firstname.charAt(0).toUpperCase();
-      const lastnameInitial = loggedInUser.lastname.charAt(0).toUpperCase();
-      return firstnameInitial + lastnameInitial;
-    }
-    return '';
+    return loggedInUser ? `${loggedInUser.firstname.charAt(0).toUpperCase()}${loggedInUser.lastname.charAt(0).toUpperCase()}` : '';
   }
 
 
   getUserOnlineStatus(): string {
     const loggedInUser = this.authenticationService.loggedInUserFromDb;
-    if (loggedInUser) {
-      const color = loggedInUser['onlineStatus'];
-      return color;
-    }
-    return '';
+    return loggedInUser ? loggedInUser['onlineStatus'] : '';
   }
 
 
-  // Logout function, goes back to login page
   logout() {
     this.authenticationService.setUserOnlineStatus('red');
     this.authenticationService.logout().subscribe(() => {
@@ -68,7 +49,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  // Change status
   onMenuItemClick(newText: string, button: HTMLElement): void {
     button.innerText = newText;
     this.firestore
@@ -80,6 +60,7 @@ export class HomeComponent implements OnInit {
     this.closeDialog();
   }
 
+  
   closeDialog() {
     this.dialog.closeAll();
   }

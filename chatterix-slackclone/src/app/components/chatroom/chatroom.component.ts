@@ -1,12 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { ChannelService } from 'src/app/services/channel.service';
-import { Channel } from 'src/app/models/channel.model';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { DeleteChannelDialogComponent } from 'src/app/dialogs/delete-channel-dialog/delete-channel-dialog.component';
+import { ChannelService } from 'src/app/services/channel.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DeleteChannelDialogComponent } from 'src/app/dialogs/delete-channel-dialog/delete-channel-dialog.component';
 import { DmChannelService } from 'src/app/services/dm-channel.service';
 
 @Component({
@@ -14,7 +11,7 @@ import { DmChannelService } from 'src/app/services/dm-channel.service';
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.scss']
 })
-export class ChatroomComponent {
+export class ChatroomComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +19,7 @@ export class ChatroomComponent {
     public channelService: ChannelService,
     public dmChannelService: DmChannelService,
     public authenticationService: AuthenticationService,
-  ) { }
+  ) {}
 
 
   ngOnInit() {
@@ -32,36 +29,33 @@ export class ChatroomComponent {
     });
   }
 
+
   getUserOnlineStatus(): string {
     const loggedInUser = this.authenticationService.loggedInUserFromDb;
-    if (loggedInUser) {
-      console.log(loggedInUser)
-      const color = loggedInUser['onlineStatus'];
-      return color;
-    }
-    return '';
+    return loggedInUser ? loggedInUser['onlineStatus'] : '';
   }
+
 
   openDeleteChannelDialog() {
     this.dialog.open(DeleteChannelDialogComponent);
   }
 
+  
   getUserFirstname(): string {
     const loggedInUser = this.authenticationService.user;
-    if (loggedInUser) {
-      const firstname = loggedInUser.firstname;
-      return firstname;
-    }
-    return '';
+    return loggedInUser ? loggedInUser.firstname : '';
   }
-  getUserInitialsById(otherUserId: String) {
+
+  
+  getUserInitialsById(otherUserId: string): string {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
-      const firstLeter = user['firstname'].charAt(0).toUpperCase();
+      const firstLetter = user['firstname'].charAt(0).toUpperCase();
       const lastLetter = user['lastname'].charAt(0).toUpperCase();
-      return firstLeter + lastLetter;
+      return firstLetter + lastLetter;
     } else {
       throw new Error('Benutzer nicht gefunden');
     }
   }
-} 
+}
+

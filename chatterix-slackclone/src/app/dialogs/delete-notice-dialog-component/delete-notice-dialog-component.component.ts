@@ -13,5 +13,4 @@ export class DeleteNoticeDialogComponentComponent {
   closeDialog() {
     this.dialog.closeAll();
   }
-
 }

@@ -10,15 +10,13 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  form!: FormGroup;
-  isLoggingIn: boolean = false;
-  isLoggingInGuest: boolean = false;
-  isRecoveringPassword: boolean = false;
-  pwVisible: boolean = false;
-  message: string = '';
-  emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
-
+  public form: FormGroup;
+  public isLoggingIn = false;
+  public isLoggingInGuest = false;
+  public isRecoveringPassword = false;
+  public pwVisible = false;
+  private message = '';
+  public emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -31,7 +29,7 @@ export class LoginComponent {
     });
   }
 
-
+  
   login() {
     this.isLoggingIn = true;
 
@@ -43,9 +41,9 @@ export class LoginComponent {
       this.authenticationService.setUserOnlineStatus('green');
     }, (error: any) => {
       this.isLoggingIn = false;
-      this.message = 'Login failed! Check your details!'
+      this.message = 'Login failed! Check your details!';
       this.showMessage(this.message);
-    })
+    });
   }
 
 
@@ -60,9 +58,9 @@ export class LoginComponent {
       this.authenticationService.setUserOnlineStatus('green');
     }, (error: any) => {
       this.isLoggingInGuest = false;
-      this.message = 'Guest login failed. Please try again later!'
+      this.message = 'Guest login failed. Please try again later!';
       this.showMessage(this.message);
-    })
+    });
   }
 
 
@@ -72,11 +70,13 @@ export class LoginComponent {
     this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
       this.isRecoveringPassword = false;
       this.form.reset();
-      this.message = 'An email to recover your password has been sent!'
-      this.showMessage(this.message)
+      this.message = 'An email to recover your password has been sent!';
+      this.showMessage(this.message);
+    }, (error: any) => {
+      this.isRecoveringPassword = false;
+      this.message = 'We are experiencing issues recovering your password. Check your email address or try again later!';
+      this.showMessage(this.message);
     });
-
-    this.checkForError();
   }
 
 
@@ -84,25 +84,11 @@ export class LoginComponent {
     this.router.navigate(['home']);
     this.form.reset();
   }
-
+  
 
   showMessage(message: string) {
-    this.snackbar.open(message, "OK", {
+    this.snackbar.open(message, 'OK', {
       duration: 5000
-    })
-  }
-
-  
-  checkForError() {
-    setTimeout(() => {
-      if (this.isRecoveringPassword === true) {
-        this.isRecoveringPassword = false;
-        this.form.reset();
-        this.message = 'We are experiencing issues recovering your password. Check your email address or try again later!'
-        this.snackbar.open(this.message, "OK", {
-          duration: 5000
-        });
-      }
-    }, 5000);
+    });
   }
 }

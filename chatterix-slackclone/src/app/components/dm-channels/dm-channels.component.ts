@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDmChannelDialogComponent } from 'src/app/dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -13,62 +12,61 @@ import { DmChannelService } from 'src/app/services/dm-channel.service';
 export class DmChannelsComponent implements OnInit {
 
   constructor(
-    private firestore: AngularFirestore,
     public dialog: MatDialog,
     public dmChannelService: DmChannelService,
     private authenticationService: AuthenticationService
   ) { }
 
+
   ngOnInit() {
-    this.dmChannelService.getAllDmChannels()
+    this.dmChannelService.getAllDmChannels();
   }
 
 
   openAddDmChannelDialog() {
-    this.dialog.open(AddDmChannelDialogComponent)
+    this.dialog.open(AddDmChannelDialogComponent);
   }
 
 
-  getUserInitialsById(otherUserId: String) {
+  getUserInitialsById(otherUserId: string): string {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
-      const firstLeter = user['firstname'].charAt(0).toUpperCase();
+      const firstLetter = user['firstname'].charAt(0).toUpperCase();
       const lastLetter = user['lastname'].charAt(0).toUpperCase();
-      return firstLeter + lastLetter;
+      return firstLetter + lastLetter;
     } else {
       throw new Error('Benutzer nicht gefunden');
     }
   }
 
 
-  getUsernameById(otherUserId: string) {
+  getUsernameById(otherUserId: string): string {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
-      const firstName = user['firstname'];
-      const lastName = user['lastname'];
-      const name = firstName + ' ' + lastName;
-      return name;
+      return `${user['firstname']} ${user['lastname']}`;
     } else {
       throw new Error('Benutzer nicht gefunden');
     }
   }
 
 
-  getUserStatusById(otherUserId: string) {
+  getUserStatusById(otherUserId: string): string {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
       const userActivityStatus = user['userStatus'].substring(user['userStatus'].length - 2);
       return userActivityStatus;
+    } else {
+      return '';
     }
   }
 
-
-  getUserOnlineStatus(otherUserId: string) {
+  
+  getUserOnlineStatus(otherUserId: string): string {
     const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
     if (user) {
-      const color = user['onlineStatus'];
-      return color;
+      return user['onlineStatus'];
+    } else {
+      return '';
     }
-    return '';
   }
-} 
+}

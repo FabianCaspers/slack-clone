@@ -25,6 +25,7 @@ export class AddChannelDialogComponent {
     });
   }
 
+  
   closeDialog() {
     this.dialog.closeAll();
   }
@@ -41,7 +42,6 @@ export class AddChannelDialogComponent {
       console.error("Error adding document: ", error);
     });
   }
-  
 }
 
 

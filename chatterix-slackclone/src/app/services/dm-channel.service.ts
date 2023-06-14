@@ -10,7 +10,7 @@ import { DeleteNoticeDialogComponentComponent } from '../dialogs/delete-notice-d
   providedIn: 'root'
 })
 export class DmChannelService {
-  public allDmChannels = [];
+  public allDmChannels: any[] = [];
   public dmChannelId!: string;
   public dmChannelName!: string;
   private members: any;

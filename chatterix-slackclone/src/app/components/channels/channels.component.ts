@@ -15,9 +15,11 @@ export class ChannelsComponent implements OnInit {
     public channelService: ChannelService
   ) {}
 
+
   ngOnInit() { 
   }
 
+  
   createNewChannel() {
     this.dialog.open(AddChannelDialogComponent)
   }

@@ -12,13 +12,13 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class RegisterComponent {
 
-  registerForm!: FormGroup;
-  isRegistering: boolean = false;
-  pwVisible: boolean = false;
-  message: string = '';
-  namePattern = "[a-zA-Z]+";
-  passwordPattern ="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
-  emailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
+  public registerForm!: FormGroup;
+  public isRegistering: boolean = false;
+  public pwVisible: boolean = false;
+  private message: string = '';
+  public namePattern = "[a-zA-Z]+";
+  public passwordPattern ="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}";
+  public emailPattern ="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -32,6 +32,7 @@ export class RegisterComponent {
       'password': new FormControl('', [Validators.required, Validators.pattern(this.passwordPattern)])
     });
   }
+
 
   register() {
     this.isRegistering = true;
@@ -48,12 +49,14 @@ export class RegisterComponent {
     })
   }
 
+
   navigateToLogin() {
     setTimeout(() => {
       this.router.navigate(['login']);
       this.registerForm.reset();
     }, 3000);
   }
+
 
   showMessage(message: string) {
     this.snackbar.open(message, "OK", {
