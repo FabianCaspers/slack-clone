@@ -3,14 +3,15 @@
         <p>Channels</p>
     </div>
 
-    
-    <div class="channels-list" *ngFor="let channel of this.channelService.allChannels">
+
+    <div class="channels-list" *ngFor="let channel of this.channelService.allChannels"
+        [routerLink]="['channel-chatroom/' + channel['channelId']]" routerLinkActive="active-link">
         <mat-icon>tag</mat-icon>
-        <p [routerLink]="['channel-chatroom/' + channel['channelId']]" class="single-channel">{{channel['channelName']}}</p>
+        <p class="single-channel">{{channel['channelName']}}</p>
     </div>
-    
+
     <div (click)="createNewChannel()" class="add-channel">
         <mat-icon>add</mat-icon>
         <p>Add Channels</p>
     </div>
-</div>  
+</div>

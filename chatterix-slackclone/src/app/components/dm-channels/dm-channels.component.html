@@ -3,11 +3,12 @@
         <p>Directmessages</p>
     </div>
 
-    <div class="channels-list" *ngFor="let dmChannel of this.dmChannelService.allDmChannels">
+    <div class="channels-list" *ngFor="let dmChannel of this.dmChannelService.allDmChannels"
+        [routerLink]="['dm-channel-chatroom/' + dmChannel['dmChannelId']]" routerLinkActive="active-link">
         <div class="chat-icon">{{ getUserInitialsById(dmChannel['otherUserId']) }}
             <div class="online-dot {{ getUserOnlineStatus(dmChannel['otherUserId']) }}"></div>
         </div>
-        <p [routerLink]="['dm-channel-chatroom/' + dmChannel['dmChannelId']]" class="single-channel">{{
+        <p class="single-channel">{{
             getUsernameById(dmChannel['otherUserId']) }} {{ getUserStatusById(dmChannel['otherUserId']) }}</p>
     </div>
 
