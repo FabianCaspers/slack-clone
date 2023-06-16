@@ -99,3 +99,25 @@ mat-error {
   background-color: #6698C8;
   padding-left: 8px;
 }
+
+.chat-icon {
+  position: relative;
+  width: 40px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #007bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

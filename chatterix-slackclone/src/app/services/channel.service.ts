@@ -43,6 +43,7 @@ export class ChannelService {
       .subscribe((channel: any) => {
         this.channel = channel;
         this.channelName = channel?.channelName;
+        console.log(channel)
       })
   }
 

@@ -51,12 +51,16 @@
 
         .chatroom-content-chat {
             display: flex;
+            flex-direction: column;
+
             .full-message-container {
                 width: 100%;
                 display: flex;
                 padding: 0.5rem;
+
                 &:hover {
                     background-color: #222529;
+
                     .message-setting-container {
                         display: unset;
                         display: flex;
@@ -66,7 +70,9 @@
                         cursor: pointer;
                     }
                 }
+
                 .message-infos-container {
+                    display: flex;
 
                     .author-container {
                         display: flex;
@@ -77,15 +83,11 @@
                             margin-bottom: 0;
                             font-size: 13px;
                         }
-
-                        .time {
-                            font-size: 0.6rem;
-                            color: rgba(255, 255, 255, 0.7);
-                            margin-bottom: 0;
-                        }
                     }
                 }
+
                 .message-text-container {
+                    padding: 5px 10px;
 
                     .message-text {
                         font-size: 13px;
@@ -93,6 +95,7 @@
                         margin: 0;
                     }
                 }
+
                 .message-setting-container {
                     display: none;
                 }
@@ -144,4 +147,13 @@
             }
         }
     }
+}
+
+.time {
+    margin: 0 0 5px 0 !important;
+    font-size: 12px !important;
+}
+
+.chat-icon {
+    height: 40px;
 }

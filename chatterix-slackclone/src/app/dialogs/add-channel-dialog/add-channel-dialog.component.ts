@@ -33,7 +33,8 @@ export class AddChannelDialogComponent {
   createChannel() {
     const newChannel: Channel = {
       channelName: this.input.value.newChannelName, 
-      createdFromUserId: this.authService.currentSignedInUserId
+      createdFromUserId: this.authService.currentSignedInUserId,
+      messages: []
     };
   
     this.firestore.collection('channels').add(newChannel).then(() => {
