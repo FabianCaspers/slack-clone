@@ -24,18 +24,14 @@
 
         <div class="chatroom-content-chat">
             <div class="full-message-container" *ngFor="let message of messages">
-                <div class="profile-initials-container">
-
-                    <div class="online-status" [ngClass]="getUserOnlineStatus()"></div>
-                </div>
                 <div class="message-infos-container">
                     <div>
-                        <div class="chat-icon">{{ getUserInitialsById(message.authorId) }}
-                            <div class="online-dot"></div>
+                        <div class="chat-icon" [style.background-color]="getUserColor(message.authorId)">{{ getUserInitialsById(message.authorId) }}
+                            <div class="online-dot {{ getUserOnlineStatus(message.authorId) }}"></div>
                         </div>
                     </div>
                     <div class="message-text-container">
-                        <p class="time">20:00 Uhr</p>
+                        <p class="time">{{ message.time }} Uhr</p>
                         <p class="message-text">{{ message.messageText }}</p>
                     </div>
                 </div>

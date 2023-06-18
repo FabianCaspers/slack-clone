@@ -51,19 +51,23 @@ export class ChatroomComponent implements OnInit {
   getMessages() {
     setTimeout(() => {
       this.firestore
-      .collection('channels')
-      .doc(this.channelService.channelId)
-      .valueChanges()
-      .subscribe((channel: any) => {
-        this.messages = channel.messages;
-      })
+        .collection('channels')
+        .doc(this.channelService.channelId)
+        .valueChanges()
+        .subscribe((channel: any) => {
+          this.messages = channel.messages;
+        })
     }, 10);
   }
 
 
-  getUserOnlineStatus(): string {
-    const loggedInUser = this.authenticationService.loggedInUserFromDb;
-    return loggedInUser ? loggedInUser['onlineStatus'] : '';
+  getUserOnlineStatus(userId: string): string {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    if (user) {
+      return user['onlineStatus'];
+    } else {
+      return '';
+    }
   }
 
 
@@ -78,8 +82,8 @@ export class ChatroomComponent implements OnInit {
   }
 
 
-  getUserInitialsById(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+  getUserInitialsById(userId: string): string {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
     if (user) {
       const firstLetter = user['firstname'].charAt(0).toUpperCase();
       const lastLetter = user['lastname'].charAt(0).toUpperCase();
@@ -90,10 +94,21 @@ export class ChatroomComponent implements OnInit {
   }
 
 
+  getUserColor(userId: string): string {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    if (user) {
+      return user['color'];
+    } else {
+      return '';
+    }
+  }
+
+
   sendMessage() {
     const newMessage: Message = {
       authorId: this.authenticationService.currentSignedInUserId,
-      messageText: this.input.value.newMessage
+      messageText: this.input.value.newMessage,
+      time: this.getCurrentTime()
     };
 
     const docRef = this.firestore.collection('channels').doc(this.channelService.channelId);
@@ -103,6 +118,16 @@ export class ChatroomComponent implements OnInit {
     }).then(() => {
       this.input.patchValue({ newMessage: '' });
     });
+  }
+
+
+  getCurrentTime(): string {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const currentTime = hours + ':' + minutes;
+
+    return currentTime;
   }
 }
 

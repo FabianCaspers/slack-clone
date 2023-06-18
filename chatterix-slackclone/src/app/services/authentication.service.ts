@@ -39,13 +39,20 @@ export class AuthenticationService {
 
 
   setUserOnlineStatus(color: string): Promise<void> {
-    this.firestore
-      .collection('users')
-      .doc(this.currentSignedInUserId)
-      .update({
-        onlineStatus: color,
-      });
-      return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      this.firestore
+        .collection('users')
+        .doc(this.currentSignedInUserId)
+        .update({
+          onlineStatus: color,
+        })
+        .then(() => {
+          resolve(); // Erfolgreiches Auflösen des Promises
+        })
+        .catch((error) => {
+          reject(error); // Fehlerbehandlung, falls ein Fehler auftritt
+        });
+    }); 
   }
 
 
