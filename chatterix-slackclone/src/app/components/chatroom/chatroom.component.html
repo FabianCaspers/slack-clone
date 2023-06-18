@@ -45,14 +45,14 @@
         </div>
 
         <div class="chatroom-content-textarea">
-            <form [formGroup]="input">
+            <form [formGroup]="input" (submit)="sendMessage()">
                 <div class="chatroom-content-textarea-input"></div>
                 <input name="messageText" type="text" placeholder="Nachricht an #{{ this.channelService.channelName }}"
                     formControlName="newMessage">
 
-                <div class="send-btn-container" (click)="sendMessage()">
+                <button type="submit" class="button">
                     <img class="send-icon" src="../../../assets/img/send-icon.png" alt="">
-                </div>
+                </button>
             </form>
         </div>
     </div>

@@ -131,12 +131,13 @@
                 margin: 0;
             }
 
-            .send-btn-container {
+            .button {
                 background-color: #222529;
-                width: 100%;
                 height: 25px;
-                display: flex;
-                justify-content: flex-end;
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                border: unset;
 
                 img {
                     width: 25px;
