@@ -42,6 +42,7 @@ import { DmChannelService } from './services/dm-channel.service';
 import { DeleteChannelDialogComponent } from './dialogs/delete-channel-dialog/delete-channel-dialog.component';
 import { DeleteDmChannelDialogComponent } from './dialogs/delete-dm-channel-dialog/delete-dm-channel-dialog.component';
 import { DeleteNoticeDialogComponentComponent } from './dialogs/delete-notice-dialog-component/delete-notice-dialog-component.component';
+import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/delete-message-dialog.component';
 
 
 
@@ -62,7 +63,8 @@ import { DeleteNoticeDialogComponentComponent } from './dialogs/delete-notice-di
     DmChatroomComponent,
     DeleteChannelDialogComponent,
     DeleteDmChannelDialogComponent,
-    DeleteNoticeDialogComponentComponent
+    DeleteNoticeDialogComponentComponent,
+    DeleteMessageDialogComponent
   ],
   imports: [
     BrowserModule,

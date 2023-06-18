@@ -14,6 +14,7 @@ export class ChannelService {
   public channelId!: string;
   public channel: any;
   public channelName!: string;
+  public messageAuthorId!: string;
 
   constructor(
     private firestore: AngularFirestore,
@@ -60,6 +61,20 @@ export class ChannelService {
     } else {
       this.dialog.closeAll();
       this.dialog.open(DeleteNoticeDialogComponentComponent);
+    }
+  }
+
+
+  deleteMessage() {
+    if (this.authenticationService.currentSignedInUserId == this.messageAuthorId) {
+      this.firestore
+        .collection('channels')
+        .doc(this.channelId)
+        .delete();
+      this.dialog.closeAll();
+    } else {
+      this.dialog.closeAll();
+      this.messageAuthorId = '';
     }
   }
 

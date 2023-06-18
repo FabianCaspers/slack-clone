@@ -9,6 +9,7 @@ import { Message } from 'src/app/models/message.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { arrayUnion } from 'firebase/firestore';
+import { DeleteMessageDialogComponent } from 'src/app/dialogs/delete-message-dialog/delete-message-dialog.component';
 
 @Component({
   selector: 'app-chatroom',
@@ -45,6 +46,12 @@ export class ChatroomComponent implements OnInit {
         this.getMessages();
       }
     });
+  }
+
+  
+  openDeleteMessageDialog(id: string) {
+    this.dialog.open(DeleteMessageDialogComponent);
+    this.channelService.messageAuthorId = id;
   }
 
 
