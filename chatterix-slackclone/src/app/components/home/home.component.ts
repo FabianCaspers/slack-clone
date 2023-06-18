@@ -42,10 +42,11 @@ export class HomeComponent implements OnInit {
 
 
   logout() {
-    this.authenticationService.setUserOnlineStatus('red');
-    this.authenticationService.logout().subscribe(() => {
-      this.router.navigate(['login']);
-    });
+    this.authenticationService.setUserOnlineStatus('red').then(() => {
+      this.authenticationService.logout().subscribe(() => {
+        this.router.navigate(['login']);
+      });
+    })
   }
 
 
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.closeDialog();
   }
 
-  
+
   closeDialog() {
     this.dialog.closeAll();
   }

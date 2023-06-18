@@ -15,15 +15,20 @@
             <mat-form-field appearance="fill">
                 <mat-label>Select User</mat-label>
                 <mat-select formControlName="selectedUser">
-                    <mat-option *ngFor="let user of this.authenticationService.users"  [value]="user">
-                        {{user['firstname']}} {{user['lastname']}}
-                    </mat-option>
+                    <ng-container *ngFor="let user of this.authenticationService.users">
+                        <ng-container *ngIf="user['userId'] !== this.authenticationService.currentSignedInUserId">
+                          <mat-option [value]="user">
+                            {{ user['firstname'] }} {{ user['lastname'] }}
+                          </mat-option>
+                        </ng-container>
+                      </ng-container>
                 </mat-select>
-            </mat-form-field> 
+            </mat-form-field>
         </div>
 
         <div class="button-container">
-            <button type="submit" mat-raised-button class="create-button" [disabled]="selectUser.invalid">Start conversation <span>with {{ selectedUserName }} </span></button>
+            <button type="submit" mat-raised-button class="create-button" [disabled]="selectUser.invalid">Start
+                conversation <span>with {{ selectedUserName }} </span></button>
         </div>
     </form>
 </div>

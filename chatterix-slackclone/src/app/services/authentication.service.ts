@@ -38,13 +38,14 @@ export class AuthenticationService {
   }
 
 
-  setUserOnlineStatus(color: string) {
+  setUserOnlineStatus(color: string): Promise<void> {
     this.firestore
       .collection('users')
       .doc(this.currentSignedInUserId)
       .update({
         onlineStatus: color,
       });
+      return Promise.resolve();
   }
 
 
@@ -57,13 +58,13 @@ export class AuthenticationService {
 
   getCurrenctUserCollection() {
     this.firestore.collection('users')
-    .valueChanges()
-    .subscribe((users: any) => {
-      this.users = users;
-      if (this.currentSignedInUserId) {
-        this.getCurrentUser();
-      }
-    });
+      .valueChanges()
+      .subscribe((users: any) => {
+        this.users = users;
+        if (this.currentSignedInUserId) {
+          this.getCurrentUser();
+        }
+      });
   }
 
 
@@ -91,6 +92,7 @@ export class AuthenticationService {
     this.user.userId = this.loggedInUserFromDb.userId;
     this.user.userStatus = this.loggedInUserFromDb.userStatus;
     this.user.onlineStatus = this.loggedInUserFromDb.onlineStatus;
+    this.user.color = this.loggedInUserFromDb.color;
     console.log(this.user)
   }
 
@@ -105,17 +107,44 @@ export class AuthenticationService {
 
     const multiFactor: any = result.user?.multiFactor;
     const uid = multiFactor?.user.uid;
+    const randomColor = this.generateRandomColor();
 
     const user: User = {
       firstname: register.firstname,
       lastname: register.lastname,
       email: register.email,
       userId: uid,
-      userStatus: this.userStatus,
-      onlineStatus: this.onlineStatus
+      userStatus: '',
+      onlineStatus: '',
+      color: randomColor
     }
 
     this.firestore.collection('users').doc(uid).set(user);
+  }
+
+
+  generateRandomColor(): string {
+    let randomColor = '';
+    do {
+      randomColor = Math.floor(Math.random() * 16777215).toString(16); // Zufällige Hexadezimalzahl generieren
+      randomColor = "#" + randomColor.padStart(6, "0"); // Hexadezimalzahl mit "#" voranstellen und auf 6 Stellen auffüllen
+    } while (this.isColorTooLight(randomColor));
+  
+    return randomColor;
+  }
+
+
+  isColorTooLight(color: string): boolean {
+    // Extrahiere die RGB-Komponenten aus der Hexadezimalfarbe
+    const r = parseInt(color.substr(1, 2), 16);
+    const g = parseInt(color.substr(3, 2), 16);
+    const b = parseInt(color.substr(5, 2), 16);
+  
+    // Berechne die Helligkeit der Farbe (Wert zwischen 0 und 255)
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  
+    // Überprüfe, ob die Helligkeit zu hell ist (hier ist der Schwellenwert auf 160 eingestellt)
+    return brightness > 160;
   }
 
 

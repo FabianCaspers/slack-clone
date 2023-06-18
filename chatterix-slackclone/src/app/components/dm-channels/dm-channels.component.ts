@@ -69,4 +69,14 @@ export class DmChannelsComponent implements OnInit {
       return '';
     }
   }
+
+
+  getUserColor(otherUserId: string): string {
+    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    if (user) {
+      return user['color'];
+    } else {
+      return '';
+    }
+  }
 }
