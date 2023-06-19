@@ -54,6 +54,9 @@
     .chatroom-content-chat {
         display: flex;
         flex-direction: column;
+        max-height: 75vh;
+        overflow: auto;
+        overflow-x: hidden;
 
         .full-message-container {
             width: 100%;
