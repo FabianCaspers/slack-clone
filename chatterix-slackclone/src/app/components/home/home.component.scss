@@ -1,11 +1,14 @@
 .drawer-container {
     height: 100vh;
     border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color:#222529;;
+
     .drawer-sidenav {
         width: 300px;
         // background-color: #2f41a5;
         background-color: #303E4D;
     }
+
     .sidenav-header {
         height: 60px;
         color: white;
@@ -28,6 +31,7 @@
         height: 36px;
         padding: 0 8px 0 8px;
         margin-right: 24px;
+
         &:hover {
             background-color: #4b4a4f;
             border-radius: 12px;
@@ -55,9 +59,10 @@
     width: 150px;
     display: flex;
     justify-content: center;
+
     &:hover {
         background-color: lightgray;
-    }  
+    }
 }
 
 .status-container {
@@ -89,7 +94,3 @@
     height: 10px;
     border-radius: 50%;
 }
-
-
-
-
