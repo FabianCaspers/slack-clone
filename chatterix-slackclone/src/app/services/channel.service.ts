@@ -51,19 +51,25 @@ export class ChannelService {
 
 
   deleteChannelFromDb() {
-    if (this.authenticationService.user.userId === this.channel.createdFromUserId) {
-      this.router.navigate(['/home']);
-      this.firestore
-        .collection('channels')
-        .doc(this.channelId)
-        .delete();
-      this.dialog.closeAll()
-      this.openSnackBar();
-    } else {
-      this.dialog.closeAll();
-      this.dialog.open(DeleteNoticeDialogComponentComponent);
-    }
+  if (this.authenticationService.user.userId === this.channel.createdFromUserId) {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelId)
+      .delete()
+      .then(() => {
+        this.dialog.closeAll();
+        this.openSnackBar();
+        this.router.navigate(['/home']);
+        this.channelId = '';
+      })
+      .catch((error) => {
+        console.error('Fehler beim Löschen des Channels:', error);
+      });
+  } else {
+    this.dialog.closeAll();
+    this.dialog.open(DeleteNoticeDialogComponentComponent);
   }
+}
 
 
   deleteMessage() {

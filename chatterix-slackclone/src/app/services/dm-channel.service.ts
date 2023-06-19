@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteNoticeDialogComponentComponent } from '../dialogs/delete-notice-dialog-component/delete-notice-dialog-component.component';
+import { arrayRemove } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class DmChannelService {
   private chatPartnerId!: string;
   public chatPartnerProfile: any;
   public name!: string;
+  public message!: string;
 
   constructor(
     private firestore: AngularFirestore,
@@ -92,6 +94,24 @@ export class DmChannelService {
       this.dialog.closeAll();
       this.dialog.open(DeleteNoticeDialogComponentComponent);
     }
+  }
+
+
+  deleteMessage() {
+    this.firestore
+      .collection('directMessageChannels')
+      .doc(this.dmChannelId)
+      .update({
+        messages: arrayRemove(this.message)
+      })
+      .then(() => {
+        console.log('Die Nachricht wurde gelöscht.');
+      })
+      .catch((error) => {
+        console.error('Fehler beim Löschen der Nachricht:', error);
+      });
+  
+    this.dialog.closeAll();
   }
 
 
