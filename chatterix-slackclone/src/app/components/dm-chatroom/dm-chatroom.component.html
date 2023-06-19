@@ -17,9 +17,9 @@
 
 <div class="chatroom-content">
     <div class="chatroom-content-header" *ngIf="!messages || messages.length === 0">
-        <p>{{ getUserFirstname() }}, this is a private conversation with <span>{{ this.channelService.name
+        <p>{{ getUserFirstname() }}, this is a private conversation with <span>{{ channelService.name
                 }}</span></p>
-        <p>Your message can only be read by {{ this.channelService.name }}</p>
+        <p>Your message can only be read by {{ channelService.name }}</p>
         <p>Be the first to say 'hello'!"</p>
     </div>
 
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div [matMenuTriggerFor]="menu" class="message-setting-container"
-                *ngIf="this.authenticationService.currentSignedInUserId === message.authorId">
+                *ngIf="authenticationService.currentSignedInUserId === message.authorId">
                 <mat-icon>more_vert</mat-icon>
                 <mat-menu #menu="matMenu">
                     <button (click)="openDeleteDmMessageDialog(message)" mat-menu-item>Delete this message</button>
@@ -50,7 +50,7 @@
     <div class="chatroom-content-textarea">
         <form [formGroup]="input" (submit)="sendMessage()">
             <div class="chatroom-content-textarea-input"></div>
-            <input name="messageText" type="text" placeholder="Nachricht an #{{ this.channelService.name }}"
+            <input name="messageText" type="text" placeholder="Nachricht an #{{ channelService.name }}"
                 formControlName="newMessage">
 
             <button type="submit" class="button">

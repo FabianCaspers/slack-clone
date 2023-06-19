@@ -59,15 +59,17 @@ export class DmChatroomComponent {
 
 
   getMessages() {
-    setTimeout(() => {
-      this.firestore
-        .collection('directMessageChannels')
-        .doc(this.channelService.dmChannelId)
-        .valueChanges()
-        .subscribe((channel: any) => {
+    this.firestore
+      .collection('directMessageChannels')
+      .doc(this.channelService.dmChannelId)
+      .valueChanges()
+      .subscribe((channel: any) => {
+        if (channel && channel.messages) {
           this.messages = channel.messages;
-        })
-    }, 10);
+        } else {
+          this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
+        }
+      })
   }
 
 
@@ -78,10 +80,10 @@ export class DmChatroomComponent {
 
 
   getUserInitialsById(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      const firstLetter = user['firstname'].charAt(0).toUpperCase();
-      const lastLetter = user['lastname'].charAt(0).toUpperCase();
+      const firstLetter = user.firstname.charAt(0).toUpperCase();
+      const lastLetter = user.lastname.charAt(0).toUpperCase();
       return firstLetter + lastLetter;
     } else {
       throw new Error('Benutzer nicht gefunden');
@@ -90,9 +92,9 @@ export class DmChatroomComponent {
 
 
   getUserColor(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      return user['color'];
+      return user.color;
     } else {
       return '';
     }
@@ -100,9 +102,9 @@ export class DmChatroomComponent {
 
 
   getUserOnlineStatus(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      return user['onlineStatus'];
+      return user.onlineStatus;
     } else {
       return '';
     }

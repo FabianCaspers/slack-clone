@@ -48,7 +48,7 @@ export class ChatroomComponent implements OnInit {
     });
   }
 
-  
+
   openDeleteMessageDialog(message: string) {
     this.dialog.open(DeleteMessageDialogComponent);
     this.channelService.message = message;
@@ -56,22 +56,24 @@ export class ChatroomComponent implements OnInit {
 
 
   getMessages() {
-    setTimeout(() => {
-      this.firestore
-        .collection('channels')
-        .doc(this.channelService.channelId)
-        .valueChanges()
-        .subscribe((channel: any) => {
+    this.firestore
+      .collection('channels')
+      .doc(this.channelService.channelId)
+      .valueChanges()
+      .subscribe((channel: any) => {
+        if (channel && channel.messages) {
           this.messages = channel.messages;
-        })
-    }, 10);
+        } else {
+          this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
+        }
+      });
   }
 
 
   getUserOnlineStatus(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      return user['onlineStatus'];
+      return user.onlineStatus;
     } else {
       return '';
     }
@@ -90,10 +92,10 @@ export class ChatroomComponent implements OnInit {
 
 
   getUserInitialsById(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      const firstLetter = user['firstname'].charAt(0).toUpperCase();
-      const lastLetter = user['lastname'].charAt(0).toUpperCase();
+      const firstLetter = user.firstname.charAt(0).toUpperCase();
+      const lastLetter = user.lastname.charAt(0).toUpperCase();
       return firstLetter + lastLetter;
     } else {
       throw new Error('Benutzer nicht gefunden');
@@ -102,9 +104,9 @@ export class ChatroomComponent implements OnInit {
 
 
   getUserColor(userId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === userId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === userId);
     if (user) {
-      return user['color'];
+      return user.color;
     } else {
       return '';
     }

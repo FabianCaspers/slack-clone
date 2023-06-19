@@ -11,7 +11,7 @@ import { arrayRemove } from 'firebase/firestore';
   providedIn: 'root'
 })
 export class ChannelService {
-  public allChannels: any[] = [];
+  public allChannels: any;
   public channelId!: string;
   public channel: any;
   public channelName!: string;
@@ -26,6 +26,7 @@ export class ChannelService {
   ) {
     this.getChannels();
   }
+
 
   getChannels() {
     this.firestore
@@ -43,33 +44,38 @@ export class ChannelService {
       .doc(this.channelId)
       .valueChanges()
       .subscribe((channel: any) => {
-        this.channel = channel;
-        this.channelName = channel?.channelName;
-        console.log(channel)
-      })
+        if (channel && channel.channelName) {
+          this.channel = channel;
+          this.channelName = channel.channelName;
+        } else {
+          this.channel = null; // Setze channel auf null, wenn channelName nicht definiert ist
+          this.channelName = ''; // Setze channelName auf null, wenn channelName nicht definiert ist
+        }
+      });
   }
+
 
 
   deleteChannelFromDb() {
-  if (this.authenticationService.user.userId === this.channel.createdFromUserId) {
-    this.firestore
-      .collection('channels')
-      .doc(this.channelId)
-      .delete()
-      .then(() => {
-        this.dialog.closeAll();
-        this.openSnackBar();
-        this.router.navigate(['/home']);
-        this.channelId = '';
-      })
-      .catch((error) => {
-        console.error('Fehler beim Löschen des Channels:', error);
-      });
-  } else {
-    this.dialog.closeAll();
-    this.dialog.open(DeleteNoticeDialogComponentComponent);
+    if (this.authenticationService.user.userId === this.channel.createdFromUserId) {
+      this.openSnackBar();
+      this.router.navigate(['/home']);
+      this.dialog.closeAll();
+      this.firestore
+        .collection('channels')
+        .doc(this.channelId)
+        .delete()
+        .then(() => {
+          this.channelId = '';
+        })
+        .catch((error) => {
+          console.error('Fehler beim Löschen des Channels:', error);
+        });
+    } else {
+      this.dialog.closeAll();
+      this.dialog.open(DeleteNoticeDialogComponentComponent);
+    }
   }
-}
 
 
   deleteMessage() {
@@ -85,7 +91,7 @@ export class ChannelService {
       .catch((error) => {
         console.error('Fehler beim Löschen der Nachricht:', error);
       });
-  
+
     this.dialog.closeAll();
   }
 

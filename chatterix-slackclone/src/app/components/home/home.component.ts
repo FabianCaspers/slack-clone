@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   getUserOnlineStatus(): string {
     const loggedInUser = this.authenticationService.loggedInUserFromDb;
-    return loggedInUser ? loggedInUser['onlineStatus'] : '';
+    return loggedInUser ? loggedInUser.onlineStatus : '';
   }
 
 

@@ -29,10 +29,10 @@ export class DmChannelsComponent implements OnInit {
 
 
   getUserInitialsById(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === otherUserId);
     if (user) {
-      const firstLetter = user['firstname'].charAt(0).toUpperCase();
-      const lastLetter = user['lastname'].charAt(0).toUpperCase();
+      const firstLetter = user.firstname.charAt(0).toUpperCase();
+      const lastLetter = user.lastname.charAt(0).toUpperCase();
       return firstLetter + lastLetter;
     } else {
       throw new Error('Benutzer nicht gefunden');
@@ -41,9 +41,9 @@ export class DmChannelsComponent implements OnInit {
 
 
   getUsernameById(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === otherUserId);
     if (user) {
-      return `${user['firstname']} ${user['lastname']}`;
+      return `${user.firstname} ${user.lastname}`;
     } else {
       throw new Error('Benutzer nicht gefunden');
     }
@@ -51,9 +51,9 @@ export class DmChannelsComponent implements OnInit {
 
 
   getUserStatusById(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === otherUserId);
     if (user) {
-      const userActivityStatus = user['userStatus'].substring(user['userStatus'].length - 2);
+      const userActivityStatus = user.userStatus.substring(user.userStatus.length - 2);
       return userActivityStatus;
     } else {
       return '';
@@ -62,9 +62,9 @@ export class DmChannelsComponent implements OnInit {
 
   
   getUserOnlineStatus(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === otherUserId);
     if (user) {
-      return user['onlineStatus'];
+      return user.onlineStatus;
     } else {
       return '';
     }
@@ -72,9 +72,9 @@ export class DmChannelsComponent implements OnInit {
 
 
   getUserColor(otherUserId: string): string {
-    const user = this.authenticationService.users.find(obj => obj['userId'] === otherUserId);
+    const user = this.authenticationService.users.find((obj: { userId: string; }) => obj.userId === otherUserId);
     if (user) {
-      return user['color'];
+      return user.color;
     } else {
       return '';
     }

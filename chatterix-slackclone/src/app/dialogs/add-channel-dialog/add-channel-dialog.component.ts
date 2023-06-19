@@ -13,31 +13,30 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddChannelDialogComponent {
   public input: FormGroup;
+  private channel: Channel = new Channel;
 
   constructor(
     public dialog: MatDialog,
     public channelService: ChannelService,
-    private firestore: AngularFirestore, 
-    private authService: AuthenticationService 
+    private firestore: AngularFirestore,
+    private authService: AuthenticationService
   ) {
-    this.input = new FormGroup({  
-    'newChannelName': new FormControl('', Validators.required)
+    this.input = new FormGroup({
+      'newChannelName': new FormControl('', Validators.required)
     });
   }
 
-  
+
   closeDialog() {
     this.dialog.closeAll();
   }
 
   createChannel() {
-    const newChannel: Channel = {
-      channelName: this.input.value.newChannelName, 
-      createdFromUserId: this.authService.currentSignedInUserId,
-      messages: []
-    };
-  
-    this.firestore.collection('channels').add(newChannel).then(() => {
+    this.channel.channelName = this.input.value.newChannelName;
+    this.channel.createdFromUserId = this.authService.currentSignedInUserId;
+    this.channel.messages = [];
+
+    this.firestore.collection('channels').add(this.channel.toJSON()).then(() => {
       this.closeDialog();
     }).catch((error) => {
       console.error("Error adding document: ", error);

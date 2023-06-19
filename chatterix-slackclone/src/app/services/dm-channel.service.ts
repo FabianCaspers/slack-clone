@@ -11,7 +11,7 @@ import { arrayRemove } from 'firebase/firestore';
   providedIn: 'root'
 })
 export class DmChannelService {
-  public allDmChannels: any[] = [];
+  public allDmChannels: any;
   public dmChannelId!: string;
   public dmChannelName!: string;
   private members: any;
@@ -32,18 +32,20 @@ export class DmChannelService {
 
 
   getAllDmChannels() {
-    setTimeout(() => {
-      this.firestore
-        .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authenticationService.currentSignedInUserId))
-        .valueChanges({ idField: 'dmChannelId' })
-        .subscribe((changes: any) => {
-          this.allDmChannels = changes.map((dmChannel: any) => {
-            const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authenticationService.currentSignedInUserId);
-            return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId, userId: this.authenticationService.currentSignedInUserId };
+    const checkUserIdInterval = setInterval(() => {
+      if (this.authenticationService.currentSignedInUserId) {
+        clearInterval(checkUserIdInterval);
+        this.firestore
+          .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authenticationService.currentSignedInUserId))
+          .valueChanges({ idField: 'dmChannelId' })
+          .subscribe((changes: any) => {
+            this.allDmChannels = changes.map((dmChannel: any) => {
+              const otherUserId = dmChannel.memberIds.find((userId: string) => userId !== this.authenticationService.currentSignedInUserId);
+              return { dmChannelId: dmChannel.dmChannelId, otherUserId: otherUserId, userId: this.authenticationService.currentSignedInUserId };
+            });
           });
-          console.log(this.allDmChannels)
-        })
-    }, 800);
+      }
+    }, 100);
   }
 
 
@@ -76,7 +78,6 @@ export class DmChannelService {
       .subscribe((changes: any) => {
         this.chatPartnerProfile = changes;
         this.name = this.chatPartnerProfile.firstname;
-        console.log(this.chatPartnerProfile)
       })
   }
 

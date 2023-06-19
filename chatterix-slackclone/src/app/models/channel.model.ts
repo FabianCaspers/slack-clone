@@ -1,7 +1,7 @@
 export class Channel {
     channelName: string;
     createdFromUserId: any;
-    messages: any[];
+    messages: Array<object>;
 
     constructor(obj?: any) { 
         this.channelName = obj ? obj.channelName : '';
@@ -9,10 +9,11 @@ export class Channel {
         this.messages = obj ? obj.messages : [];
     }
 
-    /*public toJSON() {
+    public toJSON() {
         return {
             channelName: this.channelName,
-            createdFromUserId: this.createdFromUserId
+            createdFromUserId: this.createdFromUserId,
+            messages: this.messages
         };
-    }*/
+    }
 }

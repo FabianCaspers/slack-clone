@@ -15,10 +15,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>Select User</mat-label>
                 <mat-select formControlName="selectedUser">
-                    <ng-container *ngFor="let user of this.authenticationService.users">
-                        <ng-container *ngIf="user['userId'] !== this.authenticationService.currentSignedInUserId">
+                    <ng-container *ngFor="let user of authenticationService.users">
+                        <ng-container *ngIf="user.userId !== authenticationService.currentSignedInUserId">
                           <mat-option [value]="user">
-                            {{ user['firstname'] }} {{ user['lastname'] }}
+                            {{ user.firstname }} {{ user.lastname }}
                           </mat-option>
                         </ng-container>
                       </ng-container>

@@ -1,8 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
-import { collectionData } from '@angular/fire/firestore';
-import { DocumentData, collection, doc, getDoc, updateDoc, getFirestore } from 'firebase/firestore';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -12,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  users!: DocumentData[];
+  users!: any;
   userStatus!: string;
   onlineStatus!: string;
   currentSignedInUserId!: string;
@@ -100,7 +98,6 @@ export class AuthenticationService {
     this.user.userStatus = this.loggedInUserFromDb.userStatus;
     this.user.onlineStatus = this.loggedInUserFromDb.onlineStatus;
     this.user.color = this.loggedInUserFromDb.color;
-    console.log(this.user)
   }
 
 
