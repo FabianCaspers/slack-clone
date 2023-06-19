@@ -49,9 +49,9 @@ export class ChatroomComponent implements OnInit {
   }
 
   
-  openDeleteMessageDialog(id: string) {
+  openDeleteMessageDialog(message: string) {
     this.dialog.open(DeleteMessageDialogComponent);
-    this.channelService.messageAuthorId = id;
+    this.channelService.message = message;
   }
 
 
