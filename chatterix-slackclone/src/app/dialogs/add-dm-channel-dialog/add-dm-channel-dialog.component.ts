@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DmChannel } from 'src/app/models/dmchannel.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DmChannelService } from 'src/app/services/dm-channel.service';
 
 @Component({
   selector: 'app-add-dm-channel-dialog',
@@ -19,7 +20,8 @@ export class AddDmChannelDialogComponent {
   constructor(
     public dialog: MatDialog,
     public authenticationService: AuthenticationService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public dmChannelService: DmChannelService
   ) {
     this.selectUser = new FormGroup({
       'selectedUser': new FormControl('', Validators.required)
@@ -51,4 +53,11 @@ export class AddDmChannelDialogComponent {
     this.dialog.closeAll();
   }
 
+
+  doesDmChannelExist(user: any): boolean {
+    console.log(user.userId, this.dmChannelService.allDmChannels['0'])
+    return this.dmChannelService.allDmChannels.some((channel: { otherUserId: any; }) =>
+      channel.otherUserId == user.userId
+    );
+  }
 }

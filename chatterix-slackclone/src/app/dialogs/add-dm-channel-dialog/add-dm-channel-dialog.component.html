@@ -17,11 +17,13 @@
                 <mat-select formControlName="selectedUser">
                     <ng-container *ngFor="let user of this.authenticationService.users">
                         <ng-container *ngIf="user.userId !== this.authenticationService.currentSignedInUserId">
-                          <mat-option [value]="user">
-                            {{ user.firstname }} {{ user.lastname }}
-                          </mat-option>
+                            <ng-container *ngIf="!doesDmChannelExist(user)">
+                                <mat-option [value]="user">
+                                    {{ user.firstname }} {{ user.lastname }}
+                                </mat-option>
+                            </ng-container>
                         </ng-container>
-                      </ng-container>
+                    </ng-container>
                 </mat-select>
             </mat-form-field>
         </div>
