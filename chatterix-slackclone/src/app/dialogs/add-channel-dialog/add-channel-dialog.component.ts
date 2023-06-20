@@ -22,14 +22,16 @@ export class AddChannelDialogComponent {
     private authService: AuthenticationService
   ) {
     this.input = new FormGroup({
-      'newChannelName': new FormControl('', Validators.required)
+      'newChannelName': new FormControl('', [Validators.required, this.validateChannelName.bind(this)])
     });
+    console.log(this.channelService.allChannels)
   }
 
 
   closeDialog() {
     this.dialog.closeAll();
   }
+
 
   createChannel() {
     this.channel.channelName = this.input.value.newChannelName;
@@ -41,6 +43,18 @@ export class AddChannelDialogComponent {
     }).catch((error) => {
       console.error("Error adding document: ", error);
     });
+  }
+
+
+  validateChannelName(control: FormControl): { [key: string]: any } | null {
+    const channelName = control.value;
+    const existingChannel = this.channelService.allChannels.find((channel: { channelName: string; }) => channel.channelName === channelName);
+
+    if (existingChannel) {
+      return { 'channelExists': true };
+    }
+
+    return null;
   }
 }
 
