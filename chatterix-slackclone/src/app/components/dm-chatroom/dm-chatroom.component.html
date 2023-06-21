@@ -17,7 +17,7 @@
 
 <div class="chatroom-content">
     <div class="chatroom-content-header" *ngIf="!messages || messages.length === 0">
-        <p>{{ getUserFirstname() }}, this is a private conversation with <span>{{ channelService.name
+        <p>{{ messagesService.getUserFirstname() }}, this is a private conversation with <span>{{ channelService.name
                 }}</span></p>
         <p>Your message can only be read by {{ channelService.name }}</p>
         <p>Be the first to say 'hello'!"</p>
@@ -27,14 +27,14 @@
         <div class="full-message-container" *ngFor="let message of messages">
             <div class="message-infos-container">
                 <div>
-                    <div class="chat-icon" [style.background-color]="getUserColor(message.authorId)">{{
-                        getUserInitialsById(message.authorId) }}
-                        <div class="online-dot {{ getUserOnlineStatus(message.authorId) }}"></div>
+                    <div class="chat-icon" [style.background-color]="messagesService.getUserColor(message.authorId)">{{
+                        messagesService.getUserInitialsById(message.authorId) }}
+                        <div class="online-dot {{ messagesService.getUserOnlineStatus(message.authorId) }}"></div>
                     </div>
                 </div>
                 <div class="message-text-container">
-                    <p class="time">{{ formatTime(message.time) }} Uhr</p>
-                    <p class="message-text" [innerHTML]="formatMessageText(message.messageText)"></p>
+                    <p class="time">{{ messagesService.formatTime(message.time) }} Uhr</p>
+                    <p class="message-text" [innerHTML]="messagesService.formatMessageText(message.messageText)"></p>
                   </div>
             </div>
             <div [matMenuTriggerFor]="menu" class="message-setting-container"
