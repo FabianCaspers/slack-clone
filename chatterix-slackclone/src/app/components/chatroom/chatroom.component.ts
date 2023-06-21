@@ -117,26 +117,57 @@ export class ChatroomComponent implements OnInit {
     const newMessage: Message = {
       authorId: this.authenticationService.currentSignedInUserId,
       messageText: this.input.value.newMessage,
-      time: this.getCurrentTime()
+      time: new Date() // Aktuellen Zeitstempel als Date-Objekt erstellen
     };
-
+  
     const docRef = this.firestore.collection('channels').doc(this.channelService.channelId);
-
-    docRef.update({
-      messages: arrayUnion(newMessage)
-    }).then(() => {
-      this.input.patchValue({ newMessage: '' });
+  
+    docRef.get().toPromise().then((docSnapshot: any) => {
+      const previousMessages = docSnapshot.get('messages');
+      const lastMessage = previousMessages[previousMessages.length - 1];
+  
+      if (lastMessage && this.isSameTime(lastMessage.time, newMessage.time)) {
+        // Append message to previous message
+        lastMessage.messageText += '\n' + newMessage.messageText;
+      } else {
+        // Add new message to messages array
+        previousMessages.push(newMessage);
+      }
+  
+      docRef.update({
+        messages: previousMessages
+      }).then(() => {
+        this.input.patchValue({ newMessage: '' });
+      });
     });
+  }
+  
+  
+  isSameTime(timestamp: any, time1: Date): boolean {
+    const time2 = timestamp.toDate();
+    return (
+      time1.getHours() === time2.getHours() &&
+      time1.getMinutes() === time2.getMinutes()
+    );
   }
 
 
-  getCurrentTime(): string {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const currentTime = hours + ':' + minutes;
+  formatTime(timestamp: any) {
+    const date = timestamp.toDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+  
+    const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+  
+    return `${formattedHours}:${formattedMinutes}`;
+  }
 
-    return currentTime;
+
+  formatMessageText(messageText: string): string {
+    // Ersetze den Zeilenumbruch durch einen HTML-Zeilenumbruch
+    const formattedText = messageText.replace(/\n/g, '<br>');
+    return formattedText;
   }
 }
 

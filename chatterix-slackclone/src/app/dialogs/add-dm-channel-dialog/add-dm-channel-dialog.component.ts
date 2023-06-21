@@ -46,6 +46,7 @@ export class AddDmChannelDialogComponent {
 
   generateObject() {
     this.dmChannel.memberIds = [this.selectUser.value.selectedUser.userId, this.authenticationService.user.userId];
+    this.dmChannel.messages = [];
   }
 
 
@@ -55,7 +56,6 @@ export class AddDmChannelDialogComponent {
 
 
   doesDmChannelExist(user: any): boolean {
-    console.log(user.userId, this.dmChannelService.allDmChannels['0'])
     return this.dmChannelService.allDmChannels.some((channel: { otherUserId: any; }) =>
       channel.otherUserId == user.userId
     );

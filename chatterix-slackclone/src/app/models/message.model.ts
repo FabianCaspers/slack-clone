@@ -1,7 +1,7 @@
 export class Message {
     authorId: string;
     messageText: string;
-    time: string;
+    time: Date;
 
     constructor(obj?: any) {
         this.authorId = obj ? obj.authorId : '';

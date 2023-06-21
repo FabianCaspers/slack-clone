@@ -24,7 +24,6 @@ export class AddChannelDialogComponent {
     this.input = new FormGroup({
       'newChannelName': new FormControl('', [Validators.required, this.validateChannelName.bind(this)])
     });
-    console.log(this.channelService.allChannels)
   }
 
 

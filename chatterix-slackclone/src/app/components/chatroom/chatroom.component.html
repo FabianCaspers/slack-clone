@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="message-text-container">
-                        <p class="time">{{ message.time }} Uhr</p>
-                        <p class="message-text">{{ message.messageText }}</p>
+                        <p class="time">{{ formatTime(message.time)  }} Uhr</p>
+                        <p class="message-text" [innerHTML]="formatMessageText(message.messageText)"></p>
                     </div>
                 </div>
                 <div [matMenuTriggerFor]="menu" class="message-setting-container" *ngIf="authenticationService.currentSignedInUserId === message.authorId">
