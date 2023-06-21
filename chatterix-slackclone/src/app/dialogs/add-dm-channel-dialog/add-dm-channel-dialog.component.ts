@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DmChannel } from 'src/app/models/dmchannel.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DmChannelService } from 'src/app/services/dm-channel.service';
@@ -21,7 +22,8 @@ export class AddDmChannelDialogComponent {
     public dialog: MatDialog,
     public authenticationService: AuthenticationService,
     private firestore: AngularFirestore,
-    public dmChannelService: DmChannelService
+    public dmChannelService: DmChannelService,
+    private router: Router
   ) {
     this.selectUser = new FormGroup({
       'selectedUser': new FormControl('', Validators.required)
@@ -40,7 +42,13 @@ export class AddDmChannelDialogComponent {
 
     this.firestore
       .collection('directMessageChannels')
-      .add(this.dmChannel.toJSON())
+      .add(this.dmChannel.toJSON()).then((docRef) => {
+        this.closeDialog();
+        const channelId = docRef.id;
+        this.router.navigate(['/home', 'dm-channel-chatroom', channelId]);
+      }).catch((error) => {
+        console.error("Error adding document: ", error);
+      });
   }
 
 
