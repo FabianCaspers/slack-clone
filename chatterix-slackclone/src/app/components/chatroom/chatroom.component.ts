@@ -103,7 +103,7 @@ export class ChatroomComponent implements OnInit {
       authorId: this.authenticationService.currentSignedInUserId,
       messageText: this.input.value.newMessage,
       time: new Date()
-    };
+    }; 
   }
 }
 

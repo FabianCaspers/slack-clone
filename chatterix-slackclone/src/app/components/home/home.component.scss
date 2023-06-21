@@ -23,6 +23,11 @@
         padding: 1rem;
     }
 
+    .divider {
+        padding: 65px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
     .mat-button {
         background-color: transparent;
         border: none;
@@ -84,6 +89,10 @@
     font-size: 15px;
     cursor: pointer;
     position: relative;
+
+    &:hover {
+        background-color: rgb(221, 144, 0);
+    }
 }
 
 .online-dot {

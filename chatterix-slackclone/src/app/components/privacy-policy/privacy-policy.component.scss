@@ -1,12 +1,19 @@
-.privacy-container {
+.main {
     background-color: #28313d;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.privacy-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
     margin: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 64px;
+    padding-right: 64px;
+    max-width: 1400px;
 
     .back-to-page {
         color: darkgray;
