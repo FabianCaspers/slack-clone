@@ -4,6 +4,7 @@ main {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    background-color: #28313D;
 }
 
 .back-to-login-button {
@@ -14,6 +15,7 @@ main {
 
 mat-card {
     padding: 32px;
+    background-color: #374657
 }
 
 mat-form-field {
@@ -22,7 +24,7 @@ mat-form-field {
 
 .introduction {
     margin-bottom: 32px;
-    color: #5e5e5e;
+    color: darkgray;
 }
 
 form {
@@ -35,6 +37,7 @@ form {
     h1 {
         width: 100%;
         text-align: left;
+        color: darkgray;
     }
 
     button, mat-form-field {
