@@ -50,7 +50,7 @@
                 <input name="messageText" type="text" placeholder="Nachricht an #{{ channelService.channelName }}"
                     formControlName="newMessage">
 
-                <button type="submit" class="button">
+                <button type="submit" class="button" [disabled]="input.invalid">
                     <img class="send-icon" src="../../../assets/img/send-icon.png" alt="">
                 </button>
             </form>
