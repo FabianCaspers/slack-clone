@@ -19,7 +19,7 @@
     <span class="example-spacer">Chatterix</span>
 
     <div class="search-input">
-      <mat-icon (click)="focusSearchInput()">search</mat-icon>
+      <mat-icon (click)="focusSearchInput()">search</mat-icon> 
       <mat-form-field>
         <mat-label>Search all messages</mat-label>
         <input #searchAllMessages matInput [(ngModel)]="value" (focus)="onKeyUpEvent()" (click)="messagesService.loadAllMessages()" type="text" (keyup)="onKeyUpEvent()">
