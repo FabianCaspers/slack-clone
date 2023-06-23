@@ -1,7 +1,8 @@
 .drawer-container {
     height: 100vh;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    background-color:#222529;;
+    background-color: #222529;
+    ;
 
     .drawer-sidenav {
         width: 300px;
@@ -44,7 +45,34 @@
     }
 
     .headbar {
+        position: relative;
         background-color: #28313D;
+
+        .search-input {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            mat-icon:first-child {
+                margin-right: 5px;
+                margin-top: 20px;
+            }
+
+            mat-icon:nth-child(2) {
+                color: darkgrey;
+            }
+
+            mat-form-field {
+                height: 70px;
+                width: 250px;
+                margin-top: 32px;
+            }
+        }
     }
 }
 

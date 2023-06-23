@@ -9,6 +9,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { ChatroomComponent } from './components/chatroom/chatroom.component';
 import { DmChatroomComponent } from './components/dm-chatroom/dm-chatroom.component';
 import { AuthGuard } from './services/auth.guard';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: 'channel-chatroom/:id', component: ChatroomComponent },
-      { path: 'dm-channel-chatroom/:id', component: DmChatroomComponent }
+      { path: 'dm-channel-chatroom/:id', component: DmChatroomComponent },
+      { path: 'search', component: SearchComponent}
     ]
   },
   { path: 'imprint', component: ImprintComponent},

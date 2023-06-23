@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,15 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public value: string = '';
+  @ViewChild('searchAllMessages') searchAllMessages!: ElementRef;
 
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    public messagesService: MessagesService
   ) { }
 
 
@@ -64,5 +68,11 @@ export class HomeComponent implements OnInit {
 
   closeDialog() {
     this.dialog.closeAll();
+  }
+  
+  onKeyUpEvent() {
+    this.router.navigate(['home/search']);
+    let searchValue = this.searchAllMessages.nativeElement.value.toLowerCase();
+    this.messagesService.changeSearch(searchValue);
   }
 }

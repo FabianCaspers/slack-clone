@@ -44,6 +44,8 @@ import { DeleteDmChannelDialogComponent } from './dialogs/delete-dm-channel-dial
 import { DeleteNoticeDialogComponentComponent } from './dialogs/delete-notice-dialog-component/delete-notice-dialog-component.component';
 import { DeleteMessageDialogComponent } from './dialogs/delete-message-dialog/delete-message-dialog.component';
 import { DeleteDmMessageDialogComponent } from './dialogs/delete-dm-message-dialog/delete-dm-message-dialog.component';
+import { SearchComponent } from './components/search/search.component';
+import { FilterPipe } from './pipes/filter-all-messages.pipe';
 
 
 
@@ -66,7 +68,9 @@ import { DeleteDmMessageDialogComponent } from './dialogs/delete-dm-message-dial
     DeleteDmChannelDialogComponent,
     DeleteNoticeDialogComponentComponent,
     DeleteMessageDialogComponent,
-    DeleteDmMessageDialogComponent
+    DeleteDmMessageDialogComponent,
+    SearchComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
