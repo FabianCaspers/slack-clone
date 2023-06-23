@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,7 @@ import { MessagesService } from 'src/app/services/messages.service';
   styleUrls: ['./dm-chatroom.component.scss']
 })
 export class DmChatroomComponent {
+  @ViewChild('chatroomContent') chatroomContent!: ElementRef;
   public input!: FormGroup;
   public messages: any;
 
@@ -59,6 +60,11 @@ export class DmChatroomComponent {
   }
 
 
+  scrollToBottom(): void {
+    const chatroomContentElement: HTMLElement = this.chatroomContent.nativeElement;
+    chatroomContentElement.scrollTop = chatroomContentElement.scrollHeight;
+  }
+
   getMessages() {
     this.firestore
       .collection('directMessageChannels')
@@ -70,6 +76,7 @@ export class DmChatroomComponent {
         } else {
           this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
         }
+        this.scrollToBottom();
       })
   }
 

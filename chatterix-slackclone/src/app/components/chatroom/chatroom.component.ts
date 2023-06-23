@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ChannelService } from 'src/app/services/channel.service';
@@ -17,6 +17,7 @@ import { MessagesService } from 'src/app/services/messages.service';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit {
+  @ViewChild('chatroomContent') chatroomContent!: ElementRef;
   public input: FormGroup;
   public messages: any;
 
@@ -60,6 +61,10 @@ export class ChatroomComponent implements OnInit {
     this.dialog.open(DeleteChannelDialogComponent);
   }
 
+  scrollToBottom(): void {
+    const chatroomContentElement: HTMLElement = this.chatroomContent.nativeElement;
+    chatroomContentElement.scrollTop = chatroomContentElement.scrollHeight;
+  }
 
   getMessages() {
     this.firestore
@@ -72,6 +77,7 @@ export class ChatroomComponent implements OnInit {
         } else {
           this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
         }
+        this.scrollToBottom();
       });
   }
 
