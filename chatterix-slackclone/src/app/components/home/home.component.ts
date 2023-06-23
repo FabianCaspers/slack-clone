@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
-    private router: Router,
+    public router: Router,
     private firestore: AngularFirestore,
     public messagesService: MessagesService
   ) { }
@@ -69,10 +69,20 @@ export class HomeComponent implements OnInit {
   closeDialog() {
     this.dialog.closeAll();
   }
-  
+
+
   onKeyUpEvent() {
-    this.router.navigate(['home/search']);
     let searchValue = this.searchAllMessages.nativeElement.value.toLowerCase();
     this.messagesService.changeSearch(searchValue);
+    setTimeout(() => {
+      if (searchValue) {
+        this.router.navigate(['home/search']);
+      }
+    }, 200);
+  }
+
+
+  focusSearchInput() {
+    this.searchAllMessages.nativeElement.focus();
   }
 }
