@@ -5,6 +5,18 @@
     min-height: 100vh;
 }
 
+p {
+    @media (max-width: 430px) {
+        padding: 1rem;
+    }
+}
+
+h2 {
+    @media (max-width: 430px) {
+        padding: 1rem;
+    }
+}
+
 .privacy-container {
     display: flex;
     align-items: center;
@@ -14,6 +26,9 @@
     padding-left: 64px;
     padding-right: 64px;
     max-width: 1400px;
+    @media (max-width: 430px) {
+        padding: 0;
+    }
 
     .back-to-page {
         color: darkgray;
@@ -23,6 +38,10 @@
         &:hover {
             text-decoration: underline;
             cursor: pointer;
+        }
+        @media (max-width: 430px) {
+            top: 0;
+            right: 1rem;
         }
     }
 

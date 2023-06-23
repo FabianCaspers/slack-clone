@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
       });
     })
   }
+  
 
 
   onMenuItemClick(newText: string, button: HTMLElement): void {
