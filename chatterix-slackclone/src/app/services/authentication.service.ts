@@ -17,7 +17,6 @@ export class AuthenticationService {
   loggedInUserFromDb!: any;
   user: User = new User;
 
-
   constructor(
     private auth: AngularFireAuth,
     private firestore: AngularFirestore

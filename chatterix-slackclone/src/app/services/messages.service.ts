@@ -106,7 +106,6 @@ export class MessagesService {
   }
   
 
-
   changeSearch(search: string) {
     this.searchSource.next(search);
   }

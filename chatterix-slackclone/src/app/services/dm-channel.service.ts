@@ -34,7 +34,7 @@ export class DmChannelService {
   getAllDmChannels() {
     const checkUserIdInterval = setInterval(() => {
       if (this.authenticationService.currentSignedInUserId) {
-        clearInterval(checkUserIdInterval);
+        clearInterval(checkUserIdInterval); 
         this.firestore
           .collection('directMessageChannels', ref => ref.where('memberIds', 'array-contains', this.authenticationService.currentSignedInUserId))
           .valueChanges({ idField: 'dmChannelId' })
