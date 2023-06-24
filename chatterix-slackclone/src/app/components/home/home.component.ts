@@ -1,29 +1,53 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MessagesService } from 'src/app/services/messages.service';
+import { DrawerService } from 'src/app/services/drawer.service';
+import { MatDrawer } from '@angular/material/sidenav';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public value: string = '';
   @ViewChild('searchAllMessages') searchAllMessages!: ElementRef;
+  @ViewChild('drawer') drawer!: MatDrawer;
+
+  private subscription!: Subscription;
 
   constructor(
     public authenticationService: AuthenticationService,
     public dialog: MatDialog,
     public router: Router,
     private firestore: AngularFirestore,
-    public messagesService: MessagesService
+    public messagesService: MessagesService,
+    private drawerService: DrawerService
   ) { }
 
 
   ngOnInit() {
+    this.subscription = this.drawerService.toggle.subscribe(value => {
+      if (value) {
+        this.drawer.open();
+      } else {
+        this.drawer.close();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  
+
+  public toggleDrawer() {
+    this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
   }
 
 

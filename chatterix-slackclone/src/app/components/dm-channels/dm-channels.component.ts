@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddDmChannelDialogComponent } from 'src/app/dialogs/add-dm-channel-dialog/add-dm-channel-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DmChannelService } from 'src/app/services/dm-channel.service';
+import { Router } from '@angular/router'; 
+import { DrawerService } from 'src/app/services/drawer.service';
 
 @Component({
   selector: 'app-dm-channels',
@@ -14,12 +16,25 @@ export class DmChannelsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public dmChannelService: DmChannelService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private drawerService: DrawerService 
   ) { }
 
 
   ngOnInit() {
     this.dmChannelService.getAllDmChannels();
+  }
+
+
+  navigateToDmChannel(dmChannel: any) {
+    if (window.innerWidth <= 430) {
+      this.drawerService.toggle.next(false);
+
+      setTimeout(() => {
+        this.router.navigate(['dm-channel-chatroom/' + dmChannel.dmChannelId]);
+      }, 0);
+    }
   }
 
 
