@@ -4,6 +4,13 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: #222529;
 
+    mat-form-field {
+        
+        @media (max-width: 430px) {
+          display: none;
+        }
+      }
+
     .mobile-button {
         display: none;
         @media (max-width: 430px) {
@@ -79,6 +86,13 @@
             width: 300px;
             margin: auto;
 
+            .mat-mdc-text-field-wrapper {
+                background-color: #3B4246 !important;
+            }
+            @media (max-width: 430px) {
+                position: unset;
+            }
+
             mat-icon:first-child {
                 margin-right: 5px;
                 margin-top: 20px;
@@ -96,6 +110,7 @@
         }
     }
 }
+
 
 .example-sidenav-content {
     display: flex;

@@ -26,7 +26,7 @@
 
     <div class="search-input">
       <mat-icon (click)="focusSearchInput()">search</mat-icon> 
-      <mat-form-field>
+      <mat-form-field #searchFormField>
         <mat-label>Search all messages</mat-label>
         <input #searchAllMessages matInput [(ngModel)]="value" (focus)="onKeyUpEvent()" (click)="messagesService.loadAllMessages()" type="text" (keyup)="onKeyUpEvent()">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">

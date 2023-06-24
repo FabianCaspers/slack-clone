@@ -7,6 +7,7 @@ import { MessagesService } from 'src/app/services/messages.service';
 import { DrawerService } from 'src/app/services/drawer.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
+import { Renderer2 } from '@angular/core';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   public value: string = '';
   @ViewChild('searchAllMessages') searchAllMessages!: ElementRef;
   @ViewChild('drawer') drawer!: MatDrawer;
+  @ViewChild('searchFormField') searchFormField!: ElementRef;
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
+
 
   private subscription!: Subscription;
 
@@ -27,7 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     public router: Router,
     private firestore: AngularFirestore,
     public messagesService: MessagesService,
-    private drawerService: DrawerService
+    private drawerService: DrawerService,
+    private renderer: Renderer2
   ) { }
 
 
@@ -39,6 +45,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.drawer.close();
       }
     });
+    if (window.innerWidth <= 430) {
+      this.searchAllMessages.nativeElement.style.display = 'none';
+    }
   }
 
   ngOnDestroy() {
@@ -108,6 +117,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   focusSearchInput() {
-    this.searchAllMessages.nativeElement.focus();
+    if (window.innerWidth <= 430) {
+      const displayStatus = window.getComputedStyle(this.searchInput.nativeElement.parentNode).display;
+      if (displayStatus === 'none') {
+        this.renderer.setStyle(this.searchInput.nativeElement.parentNode, 'display', 'block');
+      } else {
+        this.renderer.setStyle(this.searchInput.nativeElement.parentNode, 'display', 'none');
+      }
+    }
+    this.searchInput.nativeElement.focus();
   }
+  
 }

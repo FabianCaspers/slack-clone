@@ -8,6 +8,13 @@
     padding:  0 0 1.5rem 0;
 }
 
+.search-input {
+    @media (max-width: 430px) {
+      display: none;
+    }
+  }
+  
+
 
 .full-message-container {
     width: 100%;
