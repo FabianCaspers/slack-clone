@@ -23,13 +23,9 @@ export class SearchComponent {
       this.search = search;
     });
   }
+  
 
-
-  openChannel(message: any) {
-    this.findMessageInFirestore(message);
-  }
-
-  async findMessageInFirestore(message: string) {
+  async openChannel(message: string) {
     const collections = ['directMessageChannels', 'channels'];
 
     for (const collection of collections) {

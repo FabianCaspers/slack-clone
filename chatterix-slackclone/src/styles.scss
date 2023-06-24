@@ -79,12 +79,12 @@ mat-error {
 
 ::-webkit-scrollbar-track {
   width: 8px;
-  background-color: #f1f1f1;
+  background-color: #1e2a39;
   /* Hintergrundfarbe des Scrollbalkens */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1e2a39;
+  background-color: #333f4f;
   /* Farbe des Scrollbalken-Daumens */
   border-radius: 4px;
   /* Abrundung des Scrollbalken-Daumens */
@@ -120,4 +120,8 @@ mat-error {
   height: 10px;
   border-radius: 50%;
   border: 1px solid white;
+}
+
+mat-drawer-content {
+  overflow: hidden !important;
 }
