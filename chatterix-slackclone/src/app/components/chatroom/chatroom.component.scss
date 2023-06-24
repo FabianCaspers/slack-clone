@@ -45,7 +45,7 @@
     }
 
     .chatroom-content {
-        padding:0 0 1.5rem 1.5rem;
+        padding: 0 0 1.5rem 0;
         height: calc(100svh - 165px);
         background-color: #222529;
 
@@ -59,7 +59,7 @@
             .full-message-container {
                 width: 100%;
                 display: flex;
-                padding: 0.5rem;
+                padding: 0.5rem 1.5rem;
 
                 &:hover {
                     background-color: #34373c;
@@ -90,7 +90,7 @@
                 }
 
                 .message-text-container {
-                    padding: 5px 10px;
+                    padding: 5px 10px 0 10px;
 
                     .message-text {
                         font-size: 13px;
@@ -104,6 +104,10 @@
                     margin-right: 20px;
                 }
 
+            }
+
+            .full-message-container:first-child {
+                padding: 1rem 1.5rem 0.5rem 1.5rem;
             }
         }
 

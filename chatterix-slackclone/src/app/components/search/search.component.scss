@@ -1,23 +1,27 @@
 .chatroom-content-chat {
     display: flex;
     flex-direction: column;
-    max-height: 100%;
+    max-height: calc(100% - 64px);
     overflow: auto;
     overflow-x: hidden;
     color: white;
-    padding: 1.5rem;
+    padding:  0 0 1.5rem 0;
 }
 
 
 .full-message-container {
     width: 100%;
     display: flex;
-    padding: 0.5rem;
+    padding: 0.5rem 1.5rem;
 
     &:hover {
         background-color: #34373c;
         cursor: pointer;
     }
+}
+
+.full-message-container:first-child {
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
 }
 
 .message-infos-container {
