@@ -41,20 +41,18 @@ body {
   height: 100%;
   background-color: #FAFAFA;
   font-family: 'Roboto', sans-serif;
+  overscroll-behavior-y: none !important;
 }
 
 h1 {
   color: #3F51B5;
 }
 
-html,
-body {
-  height: 100%;
-}
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overscroll-behavior-y: none !important;
 }
 
 mat-error {
