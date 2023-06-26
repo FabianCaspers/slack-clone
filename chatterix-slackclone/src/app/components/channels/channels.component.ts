@@ -34,10 +34,11 @@ export class ChannelsComponent implements OnInit {
       this.drawerService.toggle.next(false);
   
       setTimeout(() => {
-        this.router.navigate(['channel-chatroom/' + channel.channelId]);
+        this.router.navigate(['home/channel-chatroom/' + channel.channelId]);
       }, 15);
     }
   }
+  
   
   
   createNewChannel() {

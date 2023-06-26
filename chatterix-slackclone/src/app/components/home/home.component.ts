@@ -59,7 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription = this.drawerService.toggle.subscribe(value => {
         if (value) {
           this.drawer.open();
-        } else {
+        } 
+        else {
           this.drawer.close();
         }
       });
