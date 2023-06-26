@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.drawer.close();
         }
       });
-      this.searchAllMessages.nativeElement.style.display = 'none';
     }
   }
 
