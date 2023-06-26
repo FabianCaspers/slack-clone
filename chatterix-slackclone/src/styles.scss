@@ -31,24 +31,28 @@ $chatterix-slackclone-theme: mat.define-light-theme((color: (primary: $chatterix
 
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
 html,
 body {
   height: 100%;
   background-color: #FAFAFA;
+  font-family: 'Roboto', sans-serif;
+  overscroll-behavior-y: none !important;
 }
 
 h1 {
   color: #3F51B5;
 }
 
-html,
-body {
-  height: 100%;
-}
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overscroll-behavior-y: none !important;
 }
 
 mat-error {

@@ -2,6 +2,12 @@
   <mat-drawer #drawer class="drawer-sidenav" [opened]="true" mode="side">
     <div class="sidenav-header">
       <p>What's up, {{ getUserFirstname() }}?</p>
+      <div class="mobile-button">
+      <button type="button" (click)="toggleDrawer()" mat-icon-button class="example-icon"
+      aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+      </div>
     </div>
 
     <div class="sidenav-content">
@@ -20,7 +26,7 @@
 
     <div class="search-input">
       <mat-icon (click)="focusSearchInput()">search</mat-icon> 
-      <mat-form-field>
+      <mat-form-field #searchFormField>
         <mat-label>Search all messages</mat-label>
         <input #searchAllMessages matInput [(ngModel)]="value" (focus)="onKeyUpEvent()" (click)="messagesService.loadAllMessages()" type="text" (keyup)="onKeyUpEvent()">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">

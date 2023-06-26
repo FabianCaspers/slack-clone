@@ -5,7 +5,7 @@
 
 
     <div class="channels-list" *ngFor="let channel of channelService.allChannels"
-        [routerLink]="['channel-chatroom/' + channel.channelId]" routerLinkActive="active-link">
+        [routerLink]="['channel-chatroom/' + channel.channelId]" routerLinkActive="active-link" (click)="navigateToChannel(channel)">
         <mat-icon>tag</mat-icon>
         <p class="single-channel">{{channel.channelName}}</p>
     </div>

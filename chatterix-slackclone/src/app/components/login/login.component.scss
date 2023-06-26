@@ -21,8 +21,17 @@ mat-card {
     }
 }
 
+
+
 mat-form-field {
     padding-bottom: 10px;
+    color: white !important;
+    mat-label {
+        color: white !important;
+    }
+    span {
+        color: white !important;
+    }
 }
 
 form {
