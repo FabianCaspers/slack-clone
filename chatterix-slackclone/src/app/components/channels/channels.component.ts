@@ -28,6 +28,7 @@ export class ChannelsComponent implements OnInit {
     this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
   }
 
+  
   navigateToChannel(channel: any) {
     if (window.innerWidth <= 430) {
       this.drawerService.toggle.next(false);

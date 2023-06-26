@@ -35,22 +35,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.subscription = this.drawerService.toggle.subscribe(value => {
-      if (value) {
-        this.drawer.open();
-      } else {
-        this.drawer.close();
-      }
-    });
     if (window.innerWidth <= 430) {
+      this.subscription = this.drawerService.toggle.subscribe(value => {
+        if (value) {
+          this.drawer.open();
+        } else {
+          this.drawer.close();
+        }
+      });
       this.searchAllMessages.nativeElement.style.display = 'none';
     }
   }
 
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  
+
 
   public toggleDrawer() {
     this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
@@ -82,7 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     })
   }
-  
+
 
 
   onMenuItemClick(newText: string, button: HTMLElement): void {
@@ -124,5 +125,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     this.searchInput.nativeElement.focus();
   }
-  
+
 }
