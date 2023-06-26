@@ -75,7 +75,7 @@ export class ChatroomComponent implements OnInit {
         if (channel && channel.messages) {
           this.messages = channel.messages;
         } else {
-          this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
+          this.messages = [];
         }
         this.scrollToBottom();
       });
@@ -84,7 +84,6 @@ export class ChatroomComponent implements OnInit {
 
   sendMessage() {
     const newMessage = this.createMessageObject();
-
     const docRef = this.firestore.collection('channels').doc(this.channelService.channelId);
 
     docRef.get().toPromise().then((docSnapshot: any) => {
@@ -96,7 +95,6 @@ export class ChatroomComponent implements OnInit {
       } else {
         previousMessages.push(newMessage);
       }
-
       docRef.update({ messages: previousMessages }).then(() => {
         this.input.patchValue({ newMessage: '' });
       });

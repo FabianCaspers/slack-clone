@@ -27,7 +27,6 @@ export class SearchComponent {
 
   async openChannel(message: string) {
     const collections = ['directMessageChannels', 'channels'];
-
     for (const collection of collections) {
       const querySnapshot = await this.firestore.collection(collection).ref.where('messages', 'array-contains', message).get();
 

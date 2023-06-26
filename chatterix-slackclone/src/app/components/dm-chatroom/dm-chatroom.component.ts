@@ -74,7 +74,7 @@ export class DmChatroomComponent {
         if (channel && channel.messages) {
           this.messages = channel.messages;
         } else {
-          this.messages = []; // Setze leeres Array, wenn messages nicht definiert ist
+          this.messages = [];
         }
         this.scrollToBottom();
       })
@@ -95,7 +95,6 @@ export class DmChatroomComponent {
       } else {
         previousMessages.push(newMessage);
       }
-   
       docRef.update({ messages: previousMessages }).then(() => {
         this.input.patchValue({ newMessage: '' });
       });

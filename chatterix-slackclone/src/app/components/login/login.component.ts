@@ -32,7 +32,6 @@ export class LoginComponent {
   
   login() {
     this.isLoggingIn = true;
-
     this.authenticationService.signIn({
       email: this.form.value.email,
       password: this.form.value.password
@@ -66,7 +65,6 @@ export class LoginComponent {
 
   recoverPassword() {
     this.isRecoveringPassword = true;
-
     this.authenticationService.recoverPassword(this.form.value.email).subscribe(() => {
       this.isRecoveringPassword = false;
       this.form.reset();

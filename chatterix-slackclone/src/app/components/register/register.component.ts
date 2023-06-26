@@ -36,7 +36,6 @@ export class RegisterComponent {
 
   register() {
     this.isRegistering = true;
-
     from(this.authenticationService.register(this.registerForm.value)).subscribe(() => {
       this.isRegistering = false;
       this.message = 'You have registered succesfully. You will be directed to the login page.';

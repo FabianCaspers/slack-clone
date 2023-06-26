@@ -12,9 +12,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { HostListener } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,17 +20,18 @@ import { MatDialogModule } from '@angular/material/dialog';
     trigger('slideInOut', [
       state('in', style({
         opacity: 1,
-        width: '200px' // Anpassen der gewünschten Breite
+        width: '200px'
       })),
       state('out', style({
         opacity: 0,
-        width: '0px' // Anpassen der gewünschten Breite
+        width: '0px'
       })),
       transition('in => out', animate('0.5s ease-out')),
       transition('out => in', animate('0.5s ease-in'))
     ])
   ]
 })
+
 export class HomeComponent implements OnInit, OnDestroy {
   public value: string = '';
   @ViewChild('searchAllMessages') searchAllMessages!: ElementRef;
@@ -52,7 +50,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private renderer: Renderer2
   ) { }
 
-
   ngOnInit() {
     if (window.innerWidth > 992) {
       this.searchFieldState = 'in';
@@ -69,11 +66,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event: any) {
@@ -84,29 +79,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-
   public toggleDrawer() {
     this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
   }
-
 
   getUserFirstname(): string {
     const loggedInUser = this.authenticationService.user;
     return loggedInUser ? loggedInUser.firstname : '';
   }
 
-
   getUserInitials(): string {
     const loggedInUser = this.authenticationService.user;
     return loggedInUser ? `${loggedInUser.firstname.charAt(0).toUpperCase()}${loggedInUser.lastname.charAt(0).toUpperCase()}` : '';
   }
 
-
   getUserOnlineStatus(): string {
     const loggedInUser = this.authenticationService.loggedInUserFromDb;
     return loggedInUser ? loggedInUser.onlineStatus : '';
   }
-
 
   logout() {
     this.authenticationService.setUserOnlineStatus('red').then(() => {
@@ -115,8 +105,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     })
   }
-
-
 
   onMenuItemClick(newText: string, button: HTMLElement): void {
     button.innerText = newText;
@@ -129,11 +117,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.closeDialog();
   }
 
-
   closeDialog() {
     this.dialog.closeAll();
   }
-
 
   onKeyUpEvent() {
     let searchValue = this.searchAllMessages.nativeElement.value.toLowerCase();
@@ -145,7 +131,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
-
   toggleSearchField() {
     if (window.innerWidth <= 992 && this.drawer) {
       this.searchFieldState = this.searchFieldState === 'out' ? 'in' : 'out';
@@ -154,5 +139,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.searchAllMessages.nativeElement.focus();
     }
   }
-
 }

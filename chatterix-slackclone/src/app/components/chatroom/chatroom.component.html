@@ -1,5 +1,4 @@
 <div class="chatroom-container">
-
     <div class="chatroom-header">
         <div class="channel-name-container">
             <mat-icon>tag</mat-icon>
@@ -49,7 +48,6 @@
                 <div class="chatroom-content-textarea-input"></div>
                 <input name="messageText" type="text" placeholder="Nachricht an #{{ channelService.channelName }}"
                     formControlName="newMessage">
-
                 <button type="submit" class="button" [disabled]="input.invalid">
                     <img class="send-icon" src="../../../assets/img/send-icon.png" alt="">
                 </button>
