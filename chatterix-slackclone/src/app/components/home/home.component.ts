@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import { Renderer2 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HostListener } from '@angular/core';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -59,9 +61,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.subscription = this.drawerService.toggle.subscribe(value => {
         if (value) {
           this.drawer.open();
-        } 
+        }
         else {
-          this.drawer.close();
+          this.drawer.toggle();
         }
       });
     }
@@ -145,11 +147,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   toggleSearchField() {
-    if (window.innerWidth <= 992) {
+    if (window.innerWidth <= 992 && this.drawer) {
       this.searchFieldState = this.searchFieldState === 'out' ? 'in' : 'out';
       this.menusState = this.menusState === 'in' ? 'out' : 'in';
     } else {
       this.searchAllMessages.nativeElement.focus();
     }
   }
+
 }

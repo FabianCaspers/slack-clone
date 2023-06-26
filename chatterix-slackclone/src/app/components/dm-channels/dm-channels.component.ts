@@ -32,7 +32,7 @@ export class DmChannelsComponent implements OnInit {
       this.drawerService.toggle.next(false);
 
       setTimeout(() => {
-        this.router.navigate(['dm-channel-chatroom/' + dmChannel.dmChannelId]);
+        this.router.navigate(['home/dm-channel-chatroom/' + dmChannel.dmChannelId]);
       }, 0);
     }
   }
