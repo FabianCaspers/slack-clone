@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.drawer.open();
         }
         else {
-          this.drawer.toggle();
+          this.drawer.close();
         }
       });
     }
