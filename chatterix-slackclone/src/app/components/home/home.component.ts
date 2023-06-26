@@ -8,20 +8,37 @@ import { DrawerService } from 'src/app/services/drawer.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
 import { Renderer2 } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { HostListener } from '@angular/core';
+
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        opacity: 1,
+        width: '200px' // Anpassen der gewünschten Breite
+      })),
+      state('out', style({
+        opacity: 0,
+        width: '0px' // Anpassen der gewünschten Breite
+      })),
+      transition('in => out', animate('0.5s ease-out')),
+      transition('out => in', animate('0.5s ease-in'))
+    ])
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public value: string = '';
   @ViewChild('searchAllMessages') searchAllMessages!: ElementRef;
   @ViewChild('drawer') drawer!: MatDrawer;
-  @ViewChild('searchFormField') searchFormField!: ElementRef;
-  @ViewChild('searchInput') searchInput!: ElementRef;
   private subscription!: Subscription;
+  searchFieldState: string = 'out';
+  menusState: string = 'in';
 
   constructor(
     public authenticationService: AuthenticationService,
@@ -35,6 +52,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    if (window.innerWidth > 992) {
+      this.searchFieldState = 'in';
+    }
     if (window.innerWidth <= 430) {
       this.subscription = this.drawerService.toggle.subscribe(value => {
         if (value) {
@@ -49,6 +69,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: any) {
+    if (window.innerWidth > 992) {
+      this.searchFieldState = 'in';
+    } else {
+      this.searchFieldState = 'out';
+    }
   }
 
 
@@ -113,16 +143,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
 
-  focusSearchInput() {
-    if (window.innerWidth <= 430) {
-      const displayStatus = window.getComputedStyle(this.searchInput.nativeElement.parentNode).display;
-      if (displayStatus === 'none') {
-        this.renderer.setStyle(this.searchInput.nativeElement.parentNode, 'display', 'block');
-      } else {
-        this.renderer.setStyle(this.searchInput.nativeElement.parentNode, 'display', 'none');
-      }
+  toggleSearchField() {
+    if (window.innerWidth <= 992) {
+      this.searchFieldState = this.searchFieldState === 'out' ? 'in' : 'out';
+      this.menusState = this.menusState === 'in' ? 'out' : 'in';
+    } else {
+      this.searchAllMessages.nativeElement.focus();
     }
-    this.searchInput.nativeElement.focus();
   }
-
 }

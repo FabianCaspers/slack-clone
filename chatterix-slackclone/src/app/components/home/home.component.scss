@@ -3,9 +3,18 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: #222529;
 
-    mat-form-field {
+    .search-field {
+        opacity: 1;
+
         @media (max-width: 992px) {
-            display: none;
+            opacity: 0;
+            transition: all 225ms ease-in-out;
+        }
+    }
+
+    .search-field.show {
+        @media (max-width: 992px) {
+            opacity: 1;
         }
     }
 
@@ -14,6 +23,12 @@
 
         @media (max-width: 430px) {
             display: block;
+        }
+    }
+
+    .example-spacer.show {
+        @media (max-width: 430) {
+            display: none;
         }
     }
 
@@ -87,16 +102,20 @@
             width: 300px;
             margin: auto;
 
-            @media (max-width: 430px) {
-                position: unset;
+            @media (max-width: 600px) {
+                width: 240px;
             }
 
             mat-icon:first-child {
                 margin-right: 5px;
                 margin-top: 20px;
 
+                &:hover {
+                    cursor: pointer;
+                }
+
                 @media (max-width: 992px) {
-                    margin-top: 0;
+                    margin-top: 5px;
                 }
 
                 @media (max-width: 430px) {
@@ -112,6 +131,10 @@
                 height: 70px;
                 width: 250px;
                 margin-top: 42px;
+
+                @media (max-width: 600px) {
+                    height: 64px;
+                }
             }
         }
     }
@@ -127,6 +150,7 @@
 
 .example-spacer {
     flex: 1 1 auto;
+    display: block;
 }
 
 .changeStatus {

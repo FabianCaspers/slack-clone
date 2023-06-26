@@ -22,23 +22,23 @@
       aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="example-spacer">Chatterix</span>
+    <span class="example-spacer" [@slideInOut]="menusState">Chatterix</span>
 
     <div class="search-input">
-      <mat-icon (click)="focusSearchInput()">search</mat-icon> 
-      <mat-form-field #searchFormField>
-        <mat-label>Search all messages</mat-label>
-        <input #searchAllMessages matInput [(ngModel)]="value" (focus)="onKeyUpEvent()" (click)="messagesService.loadAllMessages()" type="text" (keyup)="onKeyUpEvent()">
-        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+    <mat-icon (click)="toggleSearchField()">search</mat-icon> 
+    <mat-form-field #searchFormField [@slideInOut]="searchFieldState" class="search-field">
+      <mat-label>Search all messages</mat-label>
+      <input #searchAllMessages matInput [(ngModel)]="value" (focus)="onKeyUpEvent()" (click)="messagesService.loadAllMessages()" type="text" (keyup)="onKeyUpEvent()">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
 
-    <button class="mat-button" [matMenuTriggerFor]="menu" #homeOfficeButton>{{ authenticationService.user.userStatus ?
+    <button class="mat-button" [matMenuTriggerFor]="menu" #homeOfficeButton [@slideInOut]="menusState">{{ authenticationService.user.userStatus ?
       authenticationService.user.userStatus : 'Select a status'}}</button>
 
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" [@slideInOut]="menusState">
       <div class="status-container">
         <p>Select a status:</p>
       </div>
