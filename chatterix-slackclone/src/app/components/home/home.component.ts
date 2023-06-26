@@ -21,9 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('drawer') drawer!: MatDrawer;
   @ViewChild('searchFormField') searchFormField!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
-
-
-
   private subscription!: Subscription;
 
   constructor(
