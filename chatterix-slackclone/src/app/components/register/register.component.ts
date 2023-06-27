@@ -43,7 +43,7 @@ export class RegisterComponent {
       this.navigateToLogin();
     }, (error: any) => {
       this.isRegistering = false;
-      this.message = 'We are sorry, but the registration failed. Please check your details!'
+      this.message = 'We are sorry, but the registration has failed. Please check the required fields!'
       this.showMessage(this.message);
     })
   }
