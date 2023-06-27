@@ -79,9 +79,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+
   public toggleDrawer() {
-    this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
+    this.drawerService.toggle.next(false);
   }
+  
 
   getUserFirstname(): string {
     const loggedInUser = this.authenticationService.user;
