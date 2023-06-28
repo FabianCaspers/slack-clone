@@ -81,21 +81,21 @@ import { FilterPipe } from './pipes/filter-all-messages.pipe';
     MatInputModule,
     MatButtonModule,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyA3gsn8fS4lYU1-u53eDkb_J3UhaexCM3I",
-      authDomain: "slack-clone-c69b7.firebaseapp.com",
-      projectId: "slack-clone-c69b7",
-      storageBucket: "slack-clone-c69b7.appspot.com",
-      messagingSenderId: "463616099616",
-      appId: "1:463616099616:web:361eb3236f07c813e68345"
+      apiKey: "AIzaSyClXGIwRsxkeHmRLw5q1neLaEDWtwccsFw",
+      authDomain: "chatterix-93fcd.firebaseapp.com",
+      projectId: "chatterix-93fcd",
+      storageBucket: "chatterix-93fcd.appspot.com",
+      messagingSenderId: "17252105564",
+      appId: "1:17252105564:web:16f92cad160ad626fad599"
     }),
     provideFirestore(() => getFirestore()),
     provideFirebaseApp(() => initializeApp({
-      apiKey: "AIzaSyA3gsn8fS4lYU1-u53eDkb_J3UhaexCM3I",
-      authDomain: "slack-clone-c69b7.firebaseapp.com",
-      projectId: "slack-clone-c69b7",
-      storageBucket: "slack-clone-c69b7.appspot.com",
-      messagingSenderId: "463616099616",
-      appId: "1:463616099616:web:361eb3236f07c813e68345"
+      apiKey: "AIzaSyClXGIwRsxkeHmRLw5q1neLaEDWtwccsFw",
+      authDomain: "chatterix-93fcd.firebaseapp.com",
+      projectId: "chatterix-93fcd",
+      storageBucket: "chatterix-93fcd.appspot.com",
+      messagingSenderId: "17252105564",
+      appId: "1:17252105564:web:16f92cad160ad626fad599"
     })),
     AngularFireAuthModule,
     ReactiveFormsModule,
