@@ -22,10 +22,12 @@ export class ChannelsComponent implements OnInit {
 
   ngOnInit() { 
   }
+  
 
   public onChannelClick() {
     this.drawerService.toggle.next(!this.drawerService.toggle.getValue());
   }
+
 
   navigateToChannel(channel: any) {
     if (window.innerWidth <= 430) {
@@ -36,6 +38,7 @@ export class ChannelsComponent implements OnInit {
       }, 15);
     }
   }
+
   
   createNewChannel() {
     this.dialog.open(AddChannelDialogComponent)

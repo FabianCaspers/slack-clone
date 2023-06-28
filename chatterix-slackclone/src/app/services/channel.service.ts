@@ -60,17 +60,11 @@ export class ChannelService {
     if (this.authenticationService.user.userId === this.channel.createdFromUserId) {
       this.openSnackBar();
       this.router.navigate(['/home']);
-      this.dialog.closeAll();
       this.firestore
         .collection('channels')
         .doc(this.channelId)
-        .delete()
-        .then(() => {
-          this.channelId = '';
-        })
-        .catch((error) => {
-          console.error('Fehler beim Löschen des Channels:', error);
-        });
+        .delete();
+      this.dialog.closeAll();
     } else {
       this.dialog.closeAll();
       this.dialog.open(DeleteNoticeDialogComponentComponent);
