@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+      this.subscription?.unsubscribe();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public toggleDrawer() {
     this.drawerService.toggle.next(false);
   }
-  
+
 
   getUserFirstname(): string {
     const loggedInUser = this.authenticationService.user;
