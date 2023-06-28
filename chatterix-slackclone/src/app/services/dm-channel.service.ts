@@ -32,7 +32,7 @@ export class DmChannelService {
 
 
   getAllDmChannels() {
-    const checkUserIdInterval = setInterval(() => {
+    const checkUserIdInterval = setInterval(() => { 
       if (this.authenticationService.currentSignedInUserId) {
         clearInterval(checkUserIdInterval); 
         this.firestore
@@ -84,13 +84,13 @@ export class DmChannelService {
 
   deleteDmChannelFromDb() {
     if (this.members.memberIds.includes(this.authenticationService.user.userId)) {
+      this.openSnackBar();
       this.router.navigate(['/home']);
       this.firestore
         .collection('directMessageChannels')
         .doc(this.dmChannelId)
         .delete();
       this.dialog.closeAll()
-      this.openSnackBar();
     } else {
       this.dialog.closeAll();
       this.dialog.open(DeleteNoticeDialogComponentComponent);

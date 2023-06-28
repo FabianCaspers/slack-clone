@@ -60,14 +60,16 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.drawer.open();
         }
         else {
-          this.drawer.close();
+          if (this.drawer) {
+            this.drawer.close();
+          }
         }
       });
     }
   }
 
   ngOnDestroy() {
-      this.subscription?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   @HostListener('window:resize', ['$event'])
